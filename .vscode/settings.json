@@ -1,0 +1,9 @@
+{
+    "files.associations": {
+        "stdio.h": "c",
+        "string.h": "c",
+        "unistd.h": "c"
+    },
+    "editor.tabSize": 4,
+    "editor.insertSpaces": true
+}
