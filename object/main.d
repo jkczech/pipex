@@ -65,7 +65,8 @@
   /usr/include/x86_64-linux-gnu/bits/stdio_lim.h /usr/include/string.h \
   /usr/include/x86_64-linux-gnu/bits/types/locale_t.h \
   /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h \
-  /usr/include/strings.h
+  /usr/include/strings.h \
+  /usr/lib/llvm-12/lib/clang/12.0.1/include/stdbool.h
 
 ../source/../include/pipex.h:
 
@@ -216,3 +217,5 @@
 /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h:
 
 /usr/include/strings.h:
+
+/usr/lib/llvm-12/lib/clang/12.0.1/include/stdbool.h:

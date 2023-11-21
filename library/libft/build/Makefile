@@ -1,3 +1,8 @@
+END = \033[0m
+RED = \033[31;1m
+GREEN = \033[32;1m
+ORANGE = \033[33;1m
+
 NAME = libft.a
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
@@ -25,7 +30,7 @@ BOBJS = $(addprefix ../object/, $(SRCS:.c=.o))
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	printf "\033[32m.\033[0m";
+	printf "$(ORANGE).$(END)";
 	$(AR) $@ $?
 
 bonus: $(OBJS) $(BOBJS)

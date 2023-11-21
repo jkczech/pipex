@@ -6,9 +6,14 @@
 #    By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/20 10:10:19 by jkoupy            #+#    #+#              #
-#    Updated: 2023/11/17 19:04:14 by jkoupy           ###   ########.fr        #
+#    Updated: 2023/11/21 11:34:07 by jkoupy           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
+END = \033[0m
+RED = \033[31;1m
+GREEN = \033[32;1m
+ORANGE = \033[33;1m
 
 NAME = printf.a
 CC = cc
@@ -31,7 +36,7 @@ all:	$(LIBFT) $(NAME)
 
 $(NAME):	$(OBJS) $(LIBFT)
 	cp $(LIBFT) $(NAME)
-	printf "\033[32m.\033[0m"
+	printf "$(ORANGE).$(END)";
 	$(AR) $(NAME) $(OBJS)
 
 $(LIBFT):
