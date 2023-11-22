@@ -6,7 +6,7 @@
 /*   By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 14:27:19 by jkoupy            #+#    #+#             */
-/*   Updated: 2023/11/18 15:14:26 by jkoupy           ###   ########.fr       */
+/*   Updated: 2023/11/22 21:56:19 by jkoupy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@
 # include <string.h>	//strerror
 # include <unistd.h>	//access, dup, dup2, execve, exit
 						//fork, pipe, unlink, wait, waitpid
+#include <stdbool.h>	//true, false
+
 //main.c
 
 #endif
