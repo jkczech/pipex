@@ -6,14 +6,21 @@
 #    By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/11 12:07:05 by jkoupy            #+#    #+#              #
-#    Updated: 2023/11/21 13:59:49 by jkoupy           ###   ########.fr        #
+#    Updated: 2023/11/23 13:22:39 by jkoupy           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
+RED = \033[38;5;196;1m
+ORANGE = \033[38;5;208;1m
+YELLOW = \033[38;5;226;1m
+GREEN = \033[38;5;082;1m
+BLUE = \033[38;5;027;1m
+INDIGO = \033[38;5;093;1m
+VIOLET = \033[38;5;163;1m
+WHITE = \033[38;5;231;1m
 END = \033[0m
-RED = \033[31;1m
-GREEN = \033[32;1m
-ORANGE = \033[33;1m
+
+
 
 NAME = pipex
 
@@ -41,7 +48,7 @@ all: $(LIBFT) $(PRINTF) $(NAME)
 
 $(NAME):	$(OBJS) $(LIBFT)
 	$(CC) $(OBJS) $(CC_FLAGS) $(LIBFT) $(PRINTF) -o $(NAME)
-	printf "\r$(GREEN)✅ ./$(NAME) \tcreated                    \n$(END)"
+	printf "\r$(GREEN)🚀 ./$(NAME) \tcreated                    \n$(END)"
 
 $(LIBFT):
 	printf "$(ORANGE)🔁 ./$(NAME)\tcompiling.$(END)"
@@ -63,14 +70,14 @@ fclean: clean
 	$(RM) $(NAME)
 	printf "$(RED)💥 ./$(NAME) \tremoved\n$(END)"
 
-re: reprint fclean all
-	
-reprint:
+re: _reprint fclean all
+
+_reprint:
 	printf "$(ORANGE)🚧 ./$(NAME)\trebuild\n$(END)"
 
-shit:
-	printf "$(ORANGE)💩 made shit\n$(END)"
+nothing:
+	printf "$(WHITE)💩 made $(RED)n$(ORANGE)o$(YELLOW)t$(GREEN)h$(BLUE)i$(INDIGO)n$(VIOLET)g\n$(END)"
 
 -include $(DEPS)
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re _reprint nothing
