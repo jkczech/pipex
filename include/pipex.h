@@ -6,7 +6,7 @@
 /*   By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 14:27:19 by jkoupy            #+#    #+#             */
-/*   Updated: 2023/11/23 12:58:01 by jkoupy           ###   ########.fr       */
+/*   Updated: 2023/11/27 14:01:06 by jkoupy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,18 +24,28 @@
 						//fork, pipe, unlink, wait, waitpid
 # include <stdbool.h>	//true, false
 
+typedef struct s_cmd
+{
+	char	*path;
+	char	**args;
+}	t_cmd;
+
 typedef struct s_pipex
 {
 	int		infile;
 	int		outfile;
 	int		mypipe[2];
-	char	*commands[2];
+	t_cmd	*cmd1;
+	t_cmd	*cmd2;
 	char	*path;
+	int		size;
 }	t_pipex;
 
 //main.c
 char	*find_path(char **envp);
-void	close_files(t_pipex pipex);
+bool	free_pipex(t_pipex *pipex);
+bool	load_input(t_pipex *pipex, char **argv);
+bool	find_paths(t_pipex *pipex);
 
 //print.c
 void	print_pipex(t_pipex pipex);
