@@ -6,7 +6,7 @@
 /*   By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 14:27:19 by jkoupy            #+#    #+#             */
-/*   Updated: 2023/11/27 14:01:06 by jkoupy           ###   ########.fr       */
+/*   Updated: 2023/11/28 13:57:22 by jkoupy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,19 +35,22 @@ typedef struct s_pipex
 	int		infile;
 	int		outfile;
 	int		mypipe[2];
-	t_cmd	*cmd1;
-	t_cmd	*cmd2;
-	char	*path;
+	t_cmd	*cmd;
+	char	**paths;
 	int		size;
 }	t_pipex;
 
 //main.c
-char	*find_path(char **envp);
-bool	free_pipex(t_pipex *pipex);
-bool	load_input(t_pipex *pipex, char **argv);
-bool	find_paths(t_pipex *pipex);
+bool	find_paths(t_pipex *pipex, char **envp);
+bool	load_input(t_pipex *pipex, char **argv, char **envp);
+bool	find_commands(t_pipex *pipex);
 
 //print.c
 void	print_pipex(t_pipex pipex);
+void	print_array(char *name, char **array);
+
+//free.c
+bool	free_pipex(t_pipex *pipex);
+bool	free_array(char **array);
 
 #endif

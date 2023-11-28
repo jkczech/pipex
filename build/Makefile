@@ -6,7 +6,7 @@
 #    By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/11 12:07:05 by jkoupy            #+#    #+#              #
-#    Updated: 2023/11/27 13:19:39 by jkoupy           ###   ########.fr        #
+#    Updated: 2023/11/28 15:29:34 by jkoupy           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,9 +31,9 @@ RM = rm -rf
 LIBFT = 		../library/libft/build/libft.a
 PRINTF = 		../library/printf/build/printf.a
 
-SRCS = 	main.c
+SRCS = 	main.c print.c free.c
 
-OBJ_DIR = object
+OBJ_DIR = ../object
 OBJS = $(addprefix ../object/, $(SRCS:.c=.o))
 DEPS = $(addprefix ../object/, $(SRCS:.c=.d))
 
@@ -59,7 +59,7 @@ $(PRINTF):
 	make  -sC ../library/printf/build
 
 clean:
-	$(RM) ../object
+	$(RM) $(OBJ_DIR)
 	make clean -sC ../library/libft/build
 	make clean -sC ../library/printf/build
 	printf "$(RED)💥 object files\tremoved\n$(END)"

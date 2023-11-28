@@ -1,7 +1,7 @@
 END = \033[0m
 RED = \033[31;1m
 GREEN = \033[32;1m
-ORANGE = \033[33;1m
+ORANGE = \033[38;5;208;1m
 
 NAME = libft.a
 CC = cc
@@ -16,7 +16,7 @@ SRCS = ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c \
        ft_substr.c ft_strjoin.c ft_strtrim.c ft_split.c ft_itoa.c \
        ft_strmapi.c ft_striteri.c ft_putchar_fd.c ft_putstr_fd.c \
        ft_putendl_fd.c ft_putnbr_fd.c \
-       ft_dtoa.c
+       ft_dtoa.c ft_strjoin_three.c
 BSRCS = ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c \
         ft_lstadd_back.c ft_lstdelone.c ft_lstclear.c ft_lstiter.c \
         ft_lstmap.c
@@ -41,7 +41,7 @@ bonus: $(OBJS) $(BOBJS)
 	$(CC) -c $(CFLAGS) $< -o $@
 
 clean:
-	$(RM) object
+	$(RM) $(OBJ_DIR)
 
 fclean: clean
 	$(RM) $(NAME)
