@@ -6,7 +6,7 @@
 /*   By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 14:26:55 by jkoupy            #+#    #+#             */
-/*   Updated: 2023/11/29 12:51:19 by jkoupy           ###   ########.fr       */
+/*   Updated: 2023/11/29 13:08:34 by jkoupy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int	main(int argc, char **argv, char **envp)
 	return (0);
 }
 
+//finds PATH in environment variables and saves it into pipex
 bool	find_paths(t_pipex *pipex, char **envp)
 {
 	int	i;
@@ -41,6 +42,8 @@ bool	find_paths(t_pipex *pipex, char **envp)
 	return (true);
 }
 
+//reads all the commands, infile, outfile, opens fd's for files
+//return value: if any error false at first error, else true
 bool	load_input(t_pipex *pipex, char **argv, char **envp)
 {
 	pipex->infile = open(argv[1], O_WRONLY | O_CREAT, 0777);
@@ -63,6 +66,8 @@ bool	load_input(t_pipex *pipex, char **argv, char **envp)
 	return (true);
 }
 
+//iterates through commands in pipex.cmd, and searches for paths
+//return value: true if all found, false if one or more not found
 bool	find_commands(t_pipex *pipex)
 {
 	int		i;
@@ -78,7 +83,8 @@ bool	find_commands(t_pipex *pipex)
 		pipex->cmd[i].path = NULL;
 		while (pipex->paths[j])
 		{
-			command = ft_strjoin_three(pipex->paths[j], "/", pipex->cmd[i].args[0]);
+			command = ft_strjoin_three(pipex->paths[j], \
+					"/", pipex->cmd[i].args[0]);
 			if (is_command(pipex, command, i))
 				break ;
 			j++;
@@ -91,7 +97,7 @@ bool	find_commands(t_pipex *pipex)
 }
 
 //checks if command is valid, if so, saves it into pipex
-bool is_command(t_pipex *pipex, char *command, int i)
+bool	is_command(t_pipex *pipex, char *command, int i)
 {
 	if (!command)
 		return (false);

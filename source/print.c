@@ -6,12 +6,13 @@
 /*   By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 12:53:25 by jkoupy            #+#    #+#             */
-/*   Updated: 2023/11/29 09:36:03 by jkoupy           ###   ########.fr       */
+/*   Updated: 2023/11/29 13:10:55 by jkoupy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pipex.h"
 
+//prints elements of a string array
 void	print_array(char *name, char **array)
 {
 	int	i;
@@ -27,6 +28,7 @@ void	print_array(char *name, char **array)
 	return ;
 }
 
+//prints elements of pipex structure
 void	print_pipex(t_pipex pipex)
 {
 	print_array("The Paths are", pipex.paths);
