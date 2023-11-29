@@ -6,7 +6,7 @@
 /*   By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 13:23:11 by jkoupy            #+#    #+#             */
-/*   Updated: 2023/11/29 13:24:48 by jkoupy           ###   ########.fr       */
+/*   Updated: 2023/11/29 14:43:11 by jkoupy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,19 +75,26 @@ bool	find_paths(t_pipex *pipex, char **envp)
 //return value: if any error false at first error, else true
 bool	parse_input(t_pipex *pipex, char **argv, char **envp)
 {
-	pipex->infile = open(argv[1], O_WRONLY | O_CREAT, 0777);
+	int i;
+    
+    i = 0;
+    pipex->infile = open(argv[1], O_WRONLY | O_CREAT, 0777);
 	if (!pipex->infile)
 		return (false);
-	pipex->outfile = open(argv[4], O_RDONLY | O_CREAT, 0777);
+	pipex->outfile = open(argv[pipex->size + 2], O_RDONLY | O_CREAT, 0777);
 	if (!pipex->outfile)
 		return (false);
 	pipex->cmd = malloc(pipex->size * sizeof(t_cmd));
 	if (!pipex->cmd)
 		return (false);
-	pipex->cmd[0].args = ft_split(argv[2], ' ');
-	pipex->cmd[1].args = ft_split(argv[3], ' ');
-	if (!pipex->cmd[0].args || !pipex->cmd[1].args)
-		return (false);
+	
+    while (i < pipex->size)
+    {
+        pipex->cmd[i].args = ft_split(argv[i + 2], ' ');
+        if (!pipex->cmd[i].args)
+            return (false);
+        i++;
+    }
 	if (!find_paths(pipex, envp))
 		return (false);
 	if (!find_commands(pipex))

@@ -6,7 +6,7 @@
 /*   By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 12:53:25 by jkoupy            #+#    #+#             */
-/*   Updated: 2023/11/29 13:26:00 by jkoupy           ###   ########.fr       */
+/*   Updated: 2023/11/29 14:45:55 by jkoupy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,18 @@ void	print_array(char *name, char **array)
 //prints elements of pipex structure
 void	print_pipex(t_pipex pipex)
 {
+	int	i;
+
 	print_array("The Paths are", pipex.paths);
 	ft_printf("infile: %d\n", pipex.infile);
 	ft_printf("outfile: %d\n", pipex.outfile);
 	ft_printf("pipe1: %d\n", pipex.mypipe[0]);
 	ft_printf("pipe2: %d\n", pipex.mypipe[1]);
-	print_array("Command 1", pipex.cmd[0].args);
-	ft_printf("path: %s\n", pipex.cmd[0].path);
-	print_array("Command 2", pipex.cmd[1].args);
-	ft_printf("path: %s\n", pipex.cmd[1].path);
+	i = 0;
+	while (i < pipex.size)
+	{
+		print_array("cmd", pipex.cmd[i].args);
+		ft_printf("path: %s\n", pipex.cmd[i].path);
+		i++;
+	}
 }
