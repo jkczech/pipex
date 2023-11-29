@@ -6,7 +6,7 @@
 /*   By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 13:23:11 by jkoupy            #+#    #+#             */
-/*   Updated: 2023/11/29 14:43:11 by jkoupy           ###   ########.fr       */
+/*   Updated: 2023/11/29 15:09:24 by jkoupy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ bool	is_command(t_pipex *pipex, char *command, int i)
 		return (false);
 	if (access(command, F_OK) == 0)
 	{
-		pipex->cmd[i].path = ft_strdup(command);
+		pipex->cmds[i].path = ft_strdup(command);
 		free(command);
 		return (true);
 	}
@@ -41,11 +41,11 @@ bool	find_commands(t_pipex *pipex)
 	while (i < pipex->size)
 	{
 		j = 0;
-		pipex->cmd[i].path = NULL;
+		pipex->cmds[i].path = NULL;
 		while (pipex->paths[j])
 		{
 			command = ft_strjoin_three(pipex->paths[j], \
-					"/", pipex->cmd[i].args[0]);
+					"/", pipex->cmds[i].args[0]);
 			if (is_command(pipex, command, i))
 				break ;
 			j++;
@@ -75,26 +75,25 @@ bool	find_paths(t_pipex *pipex, char **envp)
 //return value: if any error false at first error, else true
 bool	parse_input(t_pipex *pipex, char **argv, char **envp)
 {
-	int i;
-    
-    i = 0;
-    pipex->infile = open(argv[1], O_WRONLY | O_CREAT, 0777);
+	int	i;
+
+	i = 0;
+	pipex->infile = open(argv[1], O_WRONLY | O_CREAT, 0777);
 	if (!pipex->infile)
 		return (false);
 	pipex->outfile = open(argv[pipex->size + 2], O_RDONLY | O_CREAT, 0777);
 	if (!pipex->outfile)
 		return (false);
-	pipex->cmd = malloc(pipex->size * sizeof(t_cmd));
-	if (!pipex->cmd)
+	pipex->cmds = malloc(pipex->size * sizeof(t_cmd));
+	if (!pipex->cmds)
 		return (false);
-	
-    while (i < pipex->size)
-    {
-        pipex->cmd[i].args = ft_split(argv[i + 2], ' ');
-        if (!pipex->cmd[i].args)
-            return (false);
-        i++;
-    }
+	while (i < pipex->size)
+	{
+		pipex->cmds[i].args = ft_split(argv[i + 2], ' ');
+		if (!pipex->cmds[i].args)
+			return (false);
+		i++;
+	}
 	if (!find_paths(pipex, envp))
 		return (false);
 	if (!find_commands(pipex))

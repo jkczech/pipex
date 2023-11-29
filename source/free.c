@@ -6,7 +6,7 @@
 /*   By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 13:55:44 by jkoupy            #+#    #+#             */
-/*   Updated: 2023/11/29 13:10:26 by jkoupy           ###   ########.fr       */
+/*   Updated: 2023/11/29 15:09:03 by jkoupy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,15 @@ bool	free_pipex(t_pipex *pipex)
 	int	i;
 
 	i = 0;
-	while (i < pipex->size && pipex->cmd && pipex->cmd[i].args)
+	while (i < pipex->size && pipex->cmds && pipex->cmds[i].args)
 	{
-		free_array(pipex->cmd[i].args);
-		free(pipex->cmd[i].path);
+		free_array(pipex->cmds[i].args);
+		free(pipex->cmds[i].path);
 		i++;
 	}
 	if (pipex->paths)
 		free_array(pipex->paths);
-	free(pipex->cmd);
+	free(pipex->cmds);
 	close(pipex->infile);
 	close(pipex->outfile);
 	return (true);

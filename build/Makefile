@@ -6,7 +6,7 @@
 #    By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/11 12:07:05 by jkoupy            #+#    #+#              #
-#    Updated: 2023/11/29 13:25:02 by jkoupy           ###   ########.fr        #
+#    Updated: 2023/11/29 16:41:17 by jkoupy           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ RM = rm -rf
 LIBFT = 		../library/libft/build/libft.a
 PRINTF = 		../library/printf/build/printf.a
 
-SRCS = 	main.c print.c free.c parse.c
+SRCS = 	main.c print.c free.c parse.c child.c
 
 OBJ_DIR = ../object
 OBJS = $(addprefix ../object/, $(SRCS:.c=.o))
