@@ -6,7 +6,7 @@
 #    By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/11 12:07:05 by jkoupy            #+#    #+#              #
-#    Updated: 2023/11/28 15:29:34 by jkoupy           ###   ########.fr        #
+#    Updated: 2023/11/29 09:12:57 by jkoupy           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,10 +48,10 @@ all: $(LIBFT) $(PRINTF) $(NAME)
 
 $(NAME):	$(OBJS) $(LIBFT)
 	$(CC) $(OBJS) $(CC_FLAGS) $(LIBFT) $(PRINTF) -o $(NAME)
-	printf "\r$(GREEN)🚀 ./$(NAME) \tcreated                    \n$(END)"
+	printf "\r$(GREEN)🚀 ./$(NAME)      created                    \n$(END)"
 
 $(LIBFT):
-	printf "$(ORANGE)🔁 ./$(NAME)\tcompiling.$(END)"
+	printf "$(ORANGE)🔁 ./$(NAME)    compiling$(END)"
 	make bonus -sC ../library/libft/build
 
 $(PRINTF):

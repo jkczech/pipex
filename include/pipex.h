@@ -6,7 +6,7 @@
 /*   By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 14:27:19 by jkoupy            #+#    #+#             */
-/*   Updated: 2023/11/28 13:57:22 by jkoupy           ###   ########.fr       */
+/*   Updated: 2023/11/29 09:59:31 by jkoupy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ typedef struct s_pipex
 bool	find_paths(t_pipex *pipex, char **envp);
 bool	load_input(t_pipex *pipex, char **argv, char **envp);
 bool	find_commands(t_pipex *pipex);
+bool	is_command(t_pipex *pipex, char *command, int i);
 
 //print.c
 void	print_pipex(t_pipex pipex);

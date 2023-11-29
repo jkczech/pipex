@@ -6,7 +6,7 @@
 /*   By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 13:55:44 by jkoupy            #+#    #+#             */
-/*   Updated: 2023/11/28 15:04:00 by jkoupy           ###   ########.fr       */
+/*   Updated: 2023/11/29 12:54:29 by jkoupy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ bool	free_pipex(t_pipex *pipex)
 	while (i < pipex->size && pipex->cmd && pipex->cmd[i].args)
 	{
 		free_array(pipex->cmd[i].args);
+		free(pipex->cmd[i].path);
 		i++;
 	}
 	if (pipex->paths)
@@ -35,7 +36,7 @@ bool	free_array(char **array)
 	int	i;
 
 	i = 0;
-	if (!array || !array[0])
+	if (!array)
 		return (false);
 	while (array[i])
 	{

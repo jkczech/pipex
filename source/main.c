@@ -6,7 +6,7 @@
 /*   By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 14:26:55 by jkoupy            #+#    #+#             */
-/*   Updated: 2023/11/28 15:09:50 by jkoupy           ###   ########.fr       */
+/*   Updated: 2023/11/29 12:51:19 by jkoupy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,6 @@ bool	find_paths(t_pipex *pipex, char **envp)
 
 bool	load_input(t_pipex *pipex, char **argv, char **envp)
 {
-	// if (ft_strlen(argv[0]) == 0 || ft_strlen(argv[1]) == 0 || ft_strlen(argv[2]) == 0 || ft_strlen(argv[3]) == 0)
-	// 	exit (1);
 	pipex->infile = open(argv[1], O_WRONLY | O_CREAT, 0777);
 	if (!pipex->infile)
 		return (false);
@@ -58,8 +56,6 @@ bool	load_input(t_pipex *pipex, char **argv, char **envp)
 	pipex->cmd[1].args = ft_split(argv[3], ' ');
 	if (!pipex->cmd[0].args || !pipex->cmd[1].args)
 		return (false);
-	if (!pipex->cmd[0].args[0] || !pipex->cmd[1].args[0])
-		return (free(pipex->cmd[0].args), free(pipex->cmd[1].args), false);
 	if (!find_paths(pipex, envp))
 		return (false);
 	if (!find_commands(pipex))
@@ -72,26 +68,39 @@ bool	find_commands(t_pipex *pipex)
 	int		i;
 	int		j;
 	char	*command;
+	bool	ret;
 
+	ret = true;
 	i = 0;
 	while (i < pipex->size)
 	{
 		j = 0;
+		pipex->cmd[i].path = NULL;
 		while (pipex->paths[j])
 		{
 			command = ft_strjoin_three(pipex->paths[j], "/", pipex->cmd[i].args[0]);
-			if (access(command, F_OK) == 0)
-			{
-				pipex->cmd[i].path = ft_strdup(command);
-				free(command);
+			if (is_command(pipex, command, i))
 				break ;
-			}
 			j++;
-			free(command);
 			if (!pipex->paths[j])
-				return (false);
+				ret = false;
 		}
 		i++;
 	}
-	return (true);
+	return (ret);
+}
+
+//checks if command is valid, if so, saves it into pipex
+bool is_command(t_pipex *pipex, char *command, int i)
+{
+	if (!command)
+		return (false);
+	if (access(command, F_OK) == 0)
+	{
+		pipex->cmd[i].path = ft_strdup(command);
+		free(command);
+		return (true);
+	}
+	free(command);
+	return (false);
 }
