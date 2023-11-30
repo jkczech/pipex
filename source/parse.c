@@ -6,7 +6,7 @@
 /*   By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 13:23:11 by jkoupy            #+#    #+#             */
-/*   Updated: 2023/11/29 15:09:24 by jkoupy           ###   ########.fr       */
+/*   Updated: 2023/11/30 09:26:08 by jkoupy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,9 +94,8 @@ bool	parse_input(t_pipex *pipex, char **argv, char **envp)
 			return (false);
 		i++;
 	}
-	if (!find_paths(pipex, envp))
+	if (!find_paths(pipex, envp) || !find_commands(pipex))
 		return (false);
-	if (!find_commands(pipex))
-		return (false);
+	pipex->envp = envp;
 	return (true);
 }

@@ -6,7 +6,7 @@
 /*   By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 14:27:19 by jkoupy            #+#    #+#             */
-/*   Updated: 2023/11/29 16:46:23 by jkoupy           ###   ########.fr       */
+/*   Updated: 2023/11/30 12:24:01 by jkoupy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,11 @@
 # include <stdlib.h>	//malloc, free
 # include <stdio.h>		//perror
 # include <string.h>	//strerror
-# include <unistd.h>	//access, dup, dup2, execve, exit
-# include <sys/wait.h>	//fork, pipe, unlink, wait, waitpid
+# include <unistd.h>	//access, dup, dup2, execve, exit, fork, pipe, unlink
+# include <sys/wait.h>	//wait, waitpid
 # include <stdbool.h>	//true, false
+# include <errno.h>		//errno
+# include <error.h>
 
 typedef struct s_cmd
 {
@@ -34,15 +36,18 @@ typedef struct s_pipex
 {
 	int		infile;
 	int		outfile;
+	int		size;
 	t_cmd	*cmds;
 	int		**pipes;
 	char	**paths;
-	int		size;
+	char	**envp;
 }	t_pipex;
 
 //main.c
 
-bool	piping(t_pipex pipex);
+bool	create_pipes(t_pipex *pipex);
+bool	wait_pids(t_pipex pipex, int *child_pids);
+bool	execute(t_pipex pipex);
 int		main(int argc, char **argv, char **envp);
 
 //parse.c
@@ -64,7 +69,12 @@ bool	free_array(char **array);
 
 //child.c
 
-bool	child(t_pipex pipex, int i);
+bool	first_child(t_pipex pipex, int i);
+bool	middle_child(t_pipex pipex, int i);
 bool	last_child(t_pipex pipex, int i);
+
+//error.c
+
+bool	error_message(void);
 
 #endif

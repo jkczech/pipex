@@ -6,7 +6,7 @@
 #    By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/11 12:07:05 by jkoupy            #+#    #+#              #
-#    Updated: 2023/11/29 16:41:17 by jkoupy           ###   ########.fr        #
+#    Updated: 2023/11/30 09:47:02 by jkoupy           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,19 +20,16 @@ VIOLET = \033[38;5;163;1m
 WHITE = \033[38;5;231;1m
 END = \033[0m
 
-
-
 NAME = pipex
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -MD -MP
 RM = rm -rf
 
-LIBFT = 		../library/libft/build/libft.a
-PRINTF = 		../library/printf/build/printf.a
+LIBFT = 	../library/libft/build/libft.a
+PRINTF = 	../library/printf/build/printf.a
 
-SRCS = 	main.c print.c free.c parse.c child.c
-
+SRCS = 	main.c print.c free.c parse.c child.c error.c
 OBJ_DIR = ../object
 OBJS = $(addprefix ../object/, $(SRCS:.c=.o))
 DEPS = $(addprefix ../object/, $(SRCS:.c=.d))
@@ -80,4 +77,4 @@ nothing:
 
 -include $(DEPS)
 
-.PHONY: all clean fclean re _Yreprint nothing
+.PHONY: all clean fclean re _reprint nothing
