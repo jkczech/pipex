@@ -6,7 +6,7 @@
 /*   By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 14:27:19 by jkoupy            #+#    #+#             */
-/*   Updated: 2023/11/30 12:24:01 by jkoupy           ###   ########.fr       */
+/*   Updated: 2023/12/04 14:51:21 by jkoupy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,13 @@ typedef struct s_pipex
 	int		**pipes;
 	char	**paths;
 	char	**envp;
+	int		*child_pids;
 }	t_pipex;
 
 //main.c
 
 bool	create_pipes(t_pipex *pipex);
-bool	wait_pids(t_pipex pipex, int *child_pids);
+bool	wait_pids(t_pipex pipex);
 bool	execute(t_pipex pipex);
 int		main(int argc, char **argv, char **envp);
 
@@ -66,6 +67,7 @@ void	print_array(char *name, char **array);
 
 bool	free_pipex(t_pipex *pipex);
 bool	free_array(char **array);
+bool	close_pipes(t_pipex *pipex);
 
 //child.c
 

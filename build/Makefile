@@ -6,7 +6,7 @@
 #    By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/11 12:07:05 by jkoupy            #+#    #+#              #
-#    Updated: 2023/11/30 09:47:02 by jkoupy           ###   ########.fr        #
+#    Updated: 2023/12/01 12:55:03 by jkoupy           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -67,9 +67,10 @@ fclean: clean
 	$(RM) $(NAME)
 	printf "$(RED)💥 ./$(NAME) \tremoved\n$(END)"
 
-re: _reprint fclean all
+re: _rebuild fclean all
 
-_reprint:
+
+_rebuild:
 	printf "$(ORANGE)🚧 ./$(NAME)\trebuild\n$(END)"
 
 nothing:
@@ -77,4 +78,4 @@ nothing:
 
 -include $(DEPS)
 
-.PHONY: all clean fclean re _reprint nothing
+.PHONY: all clean fclean re _rebuild nothing

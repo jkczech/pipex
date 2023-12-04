@@ -6,7 +6,7 @@
 /*   By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 13:23:11 by jkoupy            #+#    #+#             */
-/*   Updated: 2023/11/30 09:26:08 by jkoupy           ###   ########.fr       */
+/*   Updated: 2023/12/04 15:10:32 by jkoupy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,10 +78,10 @@ bool	parse_input(t_pipex *pipex, char **argv, char **envp)
 	int	i;
 
 	i = 0;
-	pipex->infile = open(argv[1], O_WRONLY | O_CREAT, 0777);
+	pipex->infile = open(argv[1], O_RDONLY);
 	if (!pipex->infile)
-		return (false);
-	pipex->outfile = open(argv[pipex->size + 2], O_RDONLY | O_CREAT, 0777);
+		return (false); //nofail, just skip first command
+	pipex->outfile = open(argv[pipex->size + 2], O_WRONLY | O_CREAT | O_TRUNC, 0777);
 	if (!pipex->outfile)
 		return (false);
 	pipex->cmds = malloc(pipex->size * sizeof(t_cmd));
