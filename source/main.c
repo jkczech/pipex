@@ -6,7 +6,7 @@
 /*   By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 14:26:55 by jkoupy            #+#    #+#             */
-/*   Updated: 2023/12/05 14:33:45 by jkoupy           ###   ########.fr       */
+/*   Updated: 2023/12/05 15:24:21 by jkoupy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,11 @@ bool	execute(t_pipex pipex)
 	return (wait_pids(pipex), free(pipex.child_pids), true);
 }
 
+void	pipex_init(t_pipex *pipex)
+{
+	pipex->size = 0;
+}
+
 int	main(int argc, char **argv, char **envp)
 {
 	t_pipex	pipex;
@@ -103,6 +108,7 @@ int	main(int argc, char **argv, char **envp)
 		return (EXIT_FAILURE);
 	}
 	pipex.size = argc - 3;
+	pipex_init(&pipex);
 	if (!parse_input(&pipex, argv, envp))
 		return (free_pipex(&pipex), EXIT_FAILURE);
 	pipex.child_pids = NULL;

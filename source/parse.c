@@ -6,7 +6,7 @@
 /*   By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 13:23:11 by jkoupy            #+#    #+#             */
-/*   Updated: 2023/12/05 14:33:13 by jkoupy           ###   ########.fr       */
+/*   Updated: 2023/12/05 15:37:37 by jkoupy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,13 +78,6 @@ bool	parse_input(t_pipex *pipex, char **argv, char **envp)
 	int	i;
 
 	i = 0;
-	pipex->infile = open(argv[1], O_RDONLY);
-	if (pipex->infile == -1)
-		pipex->skip_first = true;
-	else
-		pipex->skip_first = false;
-	pipex->outfile = open(argv[pipex->size + 2],
-			O_WRONLY | O_CREAT | O_TRUNC, 0777);
 	pipex->cmds = malloc(pipex->size * sizeof(t_cmd));
 	if (pipex->outfile == -1 || !pipex->cmds)
 		return (false);
@@ -98,5 +91,12 @@ bool	parse_input(t_pipex *pipex, char **argv, char **envp)
 	if (!find_paths(pipex, envp) || !find_commands(pipex))
 		return (false);
 	pipex->envp = envp;
+	pipex->infile = open(argv[1], O_RDONLY);
+	if (pipex->infile == -1)
+		pipex->skip_first = true;
+	else
+		pipex->skip_first = false;
+	pipex->outfile = open(argv[pipex->size + 2],
+			O_WRONLY | O_CREAT | O_TRUNC, 0777);
 	return (true);
 }
