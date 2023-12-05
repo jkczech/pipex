@@ -6,7 +6,7 @@
 /*   By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 10:54:04 by jkoupy            #+#    #+#             */
-/*   Updated: 2023/11/28 13:53:29 by jkoupy           ###   ########.fr       */
+/*   Updated: 2023/12/05 09:31:02 by jkoupy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,6 @@ int		ft_putnbr_fd(long long n, int fd);
 //My aditional funcitons
 size_t	intlen(int n);
 char	*ft_dtoa(double n, int precision);
-char	*ft_strjoin_three(char const *s1, char const *s2, char const *s3);
+char	*ft_strjoin3(char const *s1, char const *s2, char const *s3);
 
 #endif
