@@ -6,7 +6,7 @@
 /*   By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 14:26:55 by jkoupy            #+#    #+#             */
-/*   Updated: 2023/12/04 15:10:53 by jkoupy           ###   ########.fr       */
+/*   Updated: 2023/12/05 09:27:46 by jkoupy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ bool	create_pipes(t_pipex *pipex)
 	int	i;
 
 	i = 0;
-	pipex->pipes = malloc((pipex->size - 1) * sizeof(int *));
+	pipex->pipes = malloc((pipex->size) * sizeof(int *));
 	if (!pipex->pipes)
 		return (false);
 	while (i < pipex->size)
@@ -77,25 +77,21 @@ bool	execute(t_pipex pipex)
 	i = 0;
 	while (i < pipex.size)
 	{
+		if (i == 0 && pipex.skip_first)
+		{
+			i++;
+			continue ;
+		}
 		pid = fork();
 		if (pid == 0)
-		{
-			if (i == 0)
-				first_child(pipex, i);
-			else if (i != pipex.size - 1)
-				middle_child(pipex, i);
-			else
-				last_child(pipex, i);
-		}
+			child(pipex, i);
 		else if (pid > 0)
 			pipex.child_pids[i] = pid;
 		else
-			return (free(pipex.child_pids), false);
+			return (close_pipes(&pipex), free(pipex.child_pids), false); //not sure about close pipes
 		i++;
 	}
-	close_pipes(&pipex);
-	wait_pids(pipex);
-	return (free(pipex.child_pids), true);
+	return (close_pipes(&pipex), wait_pids(pipex), free(pipex.child_pids), true);
 }
 
 int	main(int argc, char **argv, char **envp)
@@ -114,7 +110,6 @@ int	main(int argc, char **argv, char **envp)
 	create_pipes(&pipex);
 	if (!execute(pipex))
 		return (free_pipex(&pipex), error_message(), EXIT_FAILURE);
-	//print_pipex(pipex);
 	free_pipex(&pipex);
 	return (EXIT_SUCCESS);
 }

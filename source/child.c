@@ -6,18 +6,31 @@
 /*   By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 16:41:26 by jkoupy            #+#    #+#             */
-/*   Updated: 2023/12/04 14:51:57 by jkoupy           ###   ########.fr       */
+/*   Updated: 2023/12/05 09:28:30 by jkoupy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pipex.h"
 
+//redirecting left to stdin and right to stdout
+//while closing left and right
 void	redirect(int left, int right)
 {
 	dup2(left, 0);
 	close(left);
 	dup2(right, 1);
 	close(right);
+}
+
+bool	child(t_pipex pipex, int i)
+{
+	if (i == 0)
+		first_child(pipex, i);
+	else if (i != pipex.size - 1)
+		middle_child(pipex, i);
+	else
+		last_child(pipex, i);
+	return (true);
 }
 
 //handles first child process, connects to infile

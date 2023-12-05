@@ -6,7 +6,7 @@
 /*   By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 13:55:44 by jkoupy            #+#    #+#             */
-/*   Updated: 2023/12/04 14:52:56 by jkoupy           ###   ########.fr       */
+/*   Updated: 2023/12/05 09:26:48 by jkoupy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,11 @@ bool	close_pipes(t_pipex *pipex)
 	int	i;
 
 	i = 0;
-	while (i < pipex->size)
+	while (i < pipex->size && pipex->pipes[i])
 	{
+		//if (pipex->pipes[i][0] != -1)
 		close(pipex->pipes[i][0]);
+		//if (pipex->pipes[i][1] != -1)
 		close(pipex->pipes[i][1]);
 		free(pipex->pipes[i]);
 		i++;
@@ -46,7 +48,9 @@ bool	free_pipex(t_pipex *pipex)
 		free_array(pipex->paths);
 	free(pipex->cmds);
 	//close_pipes(pipex);
-	close(pipex->infile);
+	if (pipex->infile != -1)
+		close(pipex->infile);
+	printf("%d", pipex->outfile);
 	close(pipex->outfile);
 	return (true);
 }

@@ -6,7 +6,7 @@
 /*   By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 14:27:19 by jkoupy            #+#    #+#             */
-/*   Updated: 2023/12/04 14:51:21 by jkoupy           ###   ########.fr       */
+/*   Updated: 2023/12/05 09:28:41 by jkoupy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ typedef struct s_pipex
 	char	**paths;
 	char	**envp;
 	int		*child_pids;
+	bool	skip_first;
 }	t_pipex;
 
 //main.c
@@ -71,6 +72,7 @@ bool	close_pipes(t_pipex *pipex);
 
 //child.c
 
+bool	child(t_pipex pipex, int i);
 bool	first_child(t_pipex pipex, int i);
 bool	middle_child(t_pipex pipex, int i);
 bool	last_child(t_pipex pipex, int i);

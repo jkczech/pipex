@@ -6,7 +6,7 @@
 /*   By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 13:23:11 by jkoupy            #+#    #+#             */
-/*   Updated: 2023/12/04 15:10:32 by jkoupy           ###   ########.fr       */
+/*   Updated: 2023/12/05 09:33:53 by jkoupy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,15 @@ bool	find_commands(t_pipex *pipex)
 		pipex->cmds[i].path = NULL;
 		while (pipex->paths[j])
 		{
-			command = ft_strjoin_three(pipex->paths[j], \
-					"/", pipex->cmds[i].args[0]);
+			command = ft_strjoin3(pipex->paths[j], "/", pipex->cmds[i].args[0]);
 			if (is_command(pipex, command, i))
 				break ;
 			j++;
 			if (!pipex->paths[j])
+			{
 				ret = false;
+				perror("Error: Command not found");
+			}
 		}
 		i++;
 	}
@@ -79,10 +81,12 @@ bool	parse_input(t_pipex *pipex, char **argv, char **envp)
 
 	i = 0;
 	pipex->infile = open(argv[1], O_RDONLY);
-	if (!pipex->infile)
-		return (false); //nofail, just skip first command
+	if (pipex->infile == -1)
+		pipex->skip_first = true;
+	else
+		pipex->skip_first = false;
 	pipex->outfile = open(argv[pipex->size + 2], O_WRONLY | O_CREAT | O_TRUNC, 0777);
-	if (!pipex->outfile)
+	if (pipex->outfile == -1)
 		return (false);
 	pipex->cmds = malloc(pipex->size * sizeof(t_cmd));
 	if (!pipex->cmds)
