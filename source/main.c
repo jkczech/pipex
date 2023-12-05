@@ -6,13 +6,13 @@
 /*   By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 14:26:55 by jkoupy            #+#    #+#             */
-/*   Updated: 2023/12/05 09:27:46 by jkoupy           ###   ########.fr       */
+/*   Updated: 2023/12/05 14:33:45 by jkoupy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pipex.h"
 
-//creates all the pipes needed
+//create all pipes needed
 //pipex.pipes is not NULL terminated
 bool	create_pipes(t_pipex *pipex)
 {
@@ -34,7 +34,7 @@ bool	create_pipes(t_pipex *pipex)
 	return (true);
 }
 
-//waits for all the child processes to finish
+//waiting for all the child processes to finish
 bool	wait_pids(t_pipex pipex)
 {
 	int	i;
@@ -42,9 +42,7 @@ bool	wait_pids(t_pipex pipex)
 	i = 0;
 	while (i < pipex.size && pipex.child_pids[i] > 0)
 	{
-		//ft_printf("Waiting for child_pids[%d]: %d\n", i, pipex.child_pids[i]);
 		waitpid(pipex.child_pids[i], NULL, 0);
-		//ft_printf("Finished\n");
 		i++;
 	}
 	return (true);
@@ -66,7 +64,7 @@ bool	allocate_pids(t_pipex *pipex)
 	return (true);
 }
 
-//forks, pipes, executes in child processes
+//fork, pipe, execute in child processes
 bool	execute(t_pipex pipex)
 {
 	int	pid;
@@ -88,10 +86,11 @@ bool	execute(t_pipex pipex)
 		else if (pid > 0)
 			pipex.child_pids[i] = pid;
 		else
-			return (close_pipes(&pipex), free(pipex.child_pids), false); //not sure about close pipes
+			return (close_pipes(&pipex), free(pipex.child_pids), false);
 		i++;
 	}
-	return (close_pipes(&pipex), wait_pids(pipex), free(pipex.child_pids), true);
+	close_pipes(&pipex);
+	return (wait_pids(pipex), free(pipex.child_pids), true);
 }
 
 int	main(int argc, char **argv, char **envp)
@@ -105,7 +104,7 @@ int	main(int argc, char **argv, char **envp)
 	}
 	pipex.size = argc - 3;
 	if (!parse_input(&pipex, argv, envp))
-		return (free_pipex(&pipex), error_message(), EXIT_FAILURE);
+		return (free_pipex(&pipex), EXIT_FAILURE);
 	pipex.child_pids = NULL;
 	create_pipes(&pipex);
 	if (!execute(pipex))

@@ -6,7 +6,7 @@
 /*   By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 16:41:26 by jkoupy            #+#    #+#             */
-/*   Updated: 2023/12/05 09:28:30 by jkoupy           ###   ########.fr       */
+/*   Updated: 2023/12/05 14:30:21 by jkoupy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,13 @@
 //while closing left and right
 void	redirect(int left, int right)
 {
-	dup2(left, 0);
+	dup2(left, STDIN_FILENO);
 	close(left);
-	dup2(right, 1);
+	dup2(right, STDOUT_FILENO);
 	close(right);
 }
 
+//handling different kinds of child processes
 bool	child(t_pipex pipex, int i)
 {
 	if (i == 0)
@@ -33,29 +34,29 @@ bool	child(t_pipex pipex, int i)
 	return (true);
 }
 
-//handles first child process, connects to infile
+//handling first child process, connects to infile
 bool	first_child(t_pipex pipex, int i)
 {
 	redirect(pipex.infile, pipex.pipes[i][1]);
-	execve(pipex.cmds[i].path, pipex.cmds[i].args, pipex.envp);
 	close_pipes(&pipex);
+	execve(pipex.cmds[i].path, pipex.cmds[i].args, pipex.envp);
 	return (true);
 }
 
-//handles middle child processes connecting the previous pipe
+//handling middle child processes connecting the previous pipe
 bool	middle_child(t_pipex pipex, int i)
 {
-	redirect(pipex.pipes[i][0], pipex.pipes[i + 1][1]);
-	execve(pipex.cmds[i].path, pipex.cmds[i].args, pipex.envp);
+	redirect(pipex.pipes[i - 1][0], pipex.pipes[i][1]);
 	close_pipes(&pipex);
+	execve(pipex.cmds[i].path, pipex.cmds[i].args, pipex.envp);
 	return (true);
 }
 
-//handles last child process, connects to outfile
+//handling last child process, connects to outfile
 bool	last_child(t_pipex pipex, int i)
 {
-	redirect(pipex.pipes[i][0], pipex.outfile);
-	execve(pipex.cmds[i].path, pipex.cmds[i].args, pipex.envp);
+	redirect(pipex.pipes[i - 1][0], pipex.outfile);
 	close_pipes(&pipex);
+	execve(pipex.cmds[i].path, pipex.cmds[i].args, pipex.envp);
 	return (true);
 }

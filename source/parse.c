@@ -6,13 +6,13 @@
 /*   By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 13:23:11 by jkoupy            #+#    #+#             */
-/*   Updated: 2023/12/05 09:33:53 by jkoupy           ###   ########.fr       */
+/*   Updated: 2023/12/05 14:33:13 by jkoupy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pipex.h"
 
-//checks if command is valid, if so, saves it into pipex
+//check if command is valid, if so, saves it into pipex
 bool	is_command(t_pipex *pipex, char *command, int i)
 {
 	if (!command)
@@ -27,7 +27,7 @@ bool	is_command(t_pipex *pipex, char *command, int i)
 	return (false);
 }
 
-//iterates through commands in pipex.cmd, and searches for paths
+//iterate through commands in pipex.cmd, and searches for paths
 //return value: true if all found, false if one or more not found
 bool	find_commands(t_pipex *pipex)
 {
@@ -44,22 +44,20 @@ bool	find_commands(t_pipex *pipex)
 		pipex->cmds[i].path = NULL;
 		while (pipex->paths[j])
 		{
-			command = ft_strjoin3(pipex->paths[j], "/", pipex->cmds[i].args[0]);
+			command = ft_strjoin3(pipex->paths[j],
+					"/", pipex->cmds[i].args[0]);
 			if (is_command(pipex, command, i))
 				break ;
 			j++;
 			if (!pipex->paths[j])
-			{
 				ret = false;
-				perror("Error: Command not found");
-			}
 		}
 		i++;
 	}
 	return (ret);
 }
 
-//finds PATH in environment variables and saves it into pipex
+//find PATH in environment variables and saves it into pipex
 bool	find_paths(t_pipex *pipex, char **envp)
 {
 	int	i;
@@ -73,7 +71,7 @@ bool	find_paths(t_pipex *pipex, char **envp)
 	return (true);
 }
 
-//reads all the commands, infile, outfile, opens fd's for files
+//read all the commands, infile, outfile, opens fd's for files
 //return value: if any error false at first error, else true
 bool	parse_input(t_pipex *pipex, char **argv, char **envp)
 {
@@ -85,11 +83,10 @@ bool	parse_input(t_pipex *pipex, char **argv, char **envp)
 		pipex->skip_first = true;
 	else
 		pipex->skip_first = false;
-	pipex->outfile = open(argv[pipex->size + 2], O_WRONLY | O_CREAT | O_TRUNC, 0777);
-	if (pipex->outfile == -1)
-		return (false);
+	pipex->outfile = open(argv[pipex->size + 2],
+			O_WRONLY | O_CREAT | O_TRUNC, 0777);
 	pipex->cmds = malloc(pipex->size * sizeof(t_cmd));
-	if (!pipex->cmds)
+	if (pipex->outfile == -1 || !pipex->cmds)
 		return (false);
 	while (i < pipex->size)
 	{
