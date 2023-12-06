@@ -6,7 +6,7 @@
 /*   By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 14:27:19 by jkoupy            #+#    #+#             */
-/*   Updated: 2023/12/05 14:31:15 by jkoupy           ###   ########.fr       */
+/*   Updated: 2023/12/06 11:35:57 by jkoupy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,14 @@ typedef struct s_pipex
 
 //main.c
 
+int		main(int argc, char **argv, char **envp);
+
+//pipex.c
 bool	create_pipes(t_pipex *pipex);
 bool	wait_pids(t_pipex pipex);
 bool	execute(t_pipex pipex);
-int		main(int argc, char **argv, char **envp);
+bool	allocate_pids(t_pipex *pipex);
+void	pipex_init(t_pipex *pipex);
 
 //parse.c
 
