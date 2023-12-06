@@ -6,7 +6,7 @@
 /*   By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 11:34:49 by jkoupy            #+#    #+#             */
-/*   Updated: 2023/12/06 13:55:17 by jkoupy           ###   ########.fr       */
+/*   Updated: 2023/12/06 13:57:11 by jkoupy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ bool	create_pipes(t_pipex *pipex)
 }
 
 //waiting for all the child processes to finish
-bool    wait_pids(t_pipex pipex)
+bool	wait_pids(t_pipex pipex)
 {
 	int	i;
 
@@ -65,7 +65,7 @@ bool	allocate_pids(t_pipex *pipex)
 }
 
 //fork, pipe, execute in child processes
-bool    execute(t_pipex pipex)
+bool	execute(t_pipex pipex)
 {
 	int	pid;
 	int	i;
