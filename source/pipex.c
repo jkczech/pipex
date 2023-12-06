@@ -6,7 +6,7 @@
 /*   By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 11:34:49 by jkoupy            #+#    #+#             */
-/*   Updated: 2023/12/06 11:36:18 by jkoupy           ###   ########.fr       */
+/*   Updated: 2023/12/06 13:41:19 by jkoupy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,17 +35,18 @@ bool	create_pipes(t_pipex *pipex)
 }
 
 //waiting for all the child processes to finish
-bool	wait_pids(t_pipex pipex)
+int wait_pids(t_pipex pipex)
 {
 	int	i;
+    int status;
 
 	i = 0;
 	while (i < pipex.size && pipex.child_pids[i] > 0)
 	{
-		waitpid(pipex.child_pids[i], NULL, 0);
+		waitpid(pipex.child_pids[i], &status, 0);
 		i++;
 	}
-	return (true);
+	return (status);
 }
 
 bool	allocate_pids(t_pipex *pipex)
@@ -65,13 +66,13 @@ bool	allocate_pids(t_pipex *pipex)
 }
 
 //fork, pipe, execute in child processes
-bool	execute(t_pipex pipex)
+int execute(t_pipex pipex)
 {
 	int	pid;
 	int	i;
 
 	if (!allocate_pids(&pipex))
-		return (false);
+		return (0);
 	i = 0;
 	while (i < pipex.size)
 	{
@@ -86,11 +87,11 @@ bool	execute(t_pipex pipex)
 		else if (pid > 0)
 			pipex.child_pids[i] = pid;
 		else
-			return (close_pipes(&pipex), free(pipex.child_pids), false);
+			return (close_pipes(&pipex), free(pipex.child_pids), 0);
 		i++;
 	}
 	close_pipes(&pipex);
-	return (wait_pids(pipex), free(pipex.child_pids), true);
+	return (wait_pids(pipex), free(pipex.child_pids), 1);
 }
 
 void	pipex_init(t_pipex *pipex)

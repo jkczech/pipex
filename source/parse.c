@@ -6,7 +6,7 @@
 /*   By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 13:23:11 by jkoupy            #+#    #+#             */
-/*   Updated: 2023/12/06 11:19:27 by jkoupy           ###   ########.fr       */
+/*   Updated: 2023/12/06 12:46:25 by jkoupy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,13 @@ bool	find_commands(t_pipex *pipex)
 				break ;
 			j++;
 			if (!pipex->paths[j])
-				ret = false;
+			{
+				perror("Command not found");
+				if (i == 0)
+					pipex->skip_first = true;
+				else
+					ret = false;
+			}
 		}
 		i++;
 	}
