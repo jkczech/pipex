@@ -6,7 +6,7 @@
 /*   By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 13:23:11 by jkoupy            #+#    #+#             */
-/*   Updated: 2023/12/07 13:51:27 by jkoupy           ###   ########.fr       */
+/*   Updated: 2023/12/07 16:52:19 by jkoupy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,20 @@ bool	is_command(t_pipex *pipex, char *command, int i)
 		free(command);
 		return (true);
 	}
+	pipex->cmds[i].path = NULL;
 	free(command);
 	return (false);
+}
+
+//prints a zsh like error message
+//skips first if not first found
+void	cmd_not_found(t_pipex *pipex, int i)
+{
+	ft_putstr_fd("pipex: command not found: ", 1);
+	ft_putstr_fd(pipex->cmds[i].args[0], 2);
+	ft_putstr_fd("\n", 2);
+	if (i == 0)
+		pipex->skip_first = true;
 }
 
 //iterate through commands in pipex.cmd, and searches for paths
@@ -43,7 +55,12 @@ bool	find_commands(t_pipex *pipex)
 	while (i < pipex->size)
 	{
 		j = 0;
-		pipex->cmds[i].path = NULL;
+		//pipex->cmds[i].path = NULL;
+		if (is_command(pipex, ft_strdup(pipex->cmds[i].args[0]), i))
+		{
+			i++;
+			break ;
+		}
 		while (pipex->paths[j])
 		{
 			command = ft_strjoin3(pipex->paths[j],
@@ -52,13 +69,7 @@ bool	find_commands(t_pipex *pipex)
 				break ;
 			j++;
 			if (!pipex->paths[j])
-			{
-				ft_putstr_fd("pipex: command not found: ", 1);
-				ft_putstr_fd(pipex->cmds[i].args[0], 2);
-				ft_putstr_fd("\n", 2);
-				if (i == 0)
-					pipex->skip_first = true;
-			}
+				cmd_not_found(pipex, i);
 		}
 		i++;
 	}
