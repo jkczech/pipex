@@ -6,7 +6,7 @@
 /*   By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 13:23:11 by jkoupy            #+#    #+#             */
-/*   Updated: 2023/12/09 14:19:54 by jkoupy           ###   ########.fr       */
+/*   Updated: 2023/12/09 14:33:28 by jkoupy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,16 +51,13 @@ bool	find_commands(t_pipex *pipex)
 	bool	ret;
 
 	ret = true;
-	i = 0;
-	while (i < pipex->size)
+	i = -1;
+	while (i++ < pipex->size - 1)
 	{
 		j = 0;
-		//pipex->cmds[i].path = NULL;
-		if (is_command(pipex, ft_strdup(pipex->cmds[i].args[0]), i))
-		{
-			i++;
+		if (pipex->cmds[i].args[0]
+			&& is_command(pipex, ft_strdup(pipex->cmds[i].args[0]), i))
 			break ;
-		}
 		while (pipex->paths[j])
 		{
 			command = ft_strjoin3(pipex->paths[j],
@@ -71,7 +68,6 @@ bool	find_commands(t_pipex *pipex)
 			if (!pipex->paths[j])
 				cmd_not_found(pipex, i);
 		}
-		i++;
 	}
 	return (ret);
 }

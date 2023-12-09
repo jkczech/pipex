@@ -6,7 +6,7 @@
 /*   By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 13:55:44 by jkoupy            #+#    #+#             */
-/*   Updated: 2023/12/07 17:03:46 by jkoupy           ###   ########.fr       */
+/*   Updated: 2023/12/09 14:28:07 by jkoupy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ bool	free_pipex(t_pipex *pipex)
 	{
 		free_array(pipex->cmds[i].args);
 		if (pipex->cmds[i].path)
-		free(pipex->cmds[i].path);
+			free(pipex->cmds[i].path);
 		i++;
 	}
 	if (pipex->paths)
