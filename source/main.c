@@ -6,7 +6,7 @@
 /*   By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 14:26:55 by jkoupy            #+#    #+#             */
-/*   Updated: 2023/12/06 12:43:58 by jkoupy           ###   ########.fr       */
+/*   Updated: 2023/12/11 18:58:52 by jkoupy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,7 @@ int	main(int argc, char **argv, char **envp)
 		ft_putstr_fd("Error: Not enough arguments\n", 2);
 		return (EXIT_FAILURE);
 	}
-	pipex_init(&pipex);
-	pipex.size = argc - 3;
+	pipex_init(&pipex, argc);
 	if (!parse_input(&pipex, argv, envp))
 		return (free_pipex(&pipex), EXIT_FAILURE);
 	pipex.child_pids = NULL;

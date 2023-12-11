@@ -6,7 +6,7 @@
 /*   By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 13:23:11 by jkoupy            #+#    #+#             */
-/*   Updated: 2023/12/09 14:33:28 by jkoupy           ###   ########.fr       */
+/*   Updated: 2023/12/11 19:49:37 by jkoupy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ bool	is_command(t_pipex *pipex, char *command, int i)
 		if (!pipex->cmds[i].path)
 			return (false);
 		free(command);
+		pipex->cmds[i].found = true;
 		return (true);
 	}
 	pipex->cmds[i].path = NULL;
@@ -37,6 +38,7 @@ void	cmd_not_found(t_pipex *pipex, int i)
 	ft_putstr_fd("pipex: command not found: ", 1);
 	ft_putstr_fd(pipex->cmds[i].args[0], 2);
 	ft_putstr_fd("\n", 2);
+	pipex->cmds[i].found = false;
 	if (i == 0)
 		pipex->skip_first = true;
 }
@@ -78,7 +80,7 @@ bool	find_paths(t_pipex *pipex, char **envp)
 	int	i;
 
 	i = 0;
-	while (ft_strncmp(envp[i], "PATH", 4) != 0)
+	while (envp && envp[i] && ft_strncmp(envp[i], "PATH", 4) != 0)
 		i++;
 	pipex->paths = ft_split(envp[i], ':');
 	if (!pipex->paths)
@@ -103,8 +105,6 @@ bool	parse_input(t_pipex *pipex, char **argv, char **envp)
 			return (false);
 		i++;
 	}
-	if (!find_paths(pipex, envp) || !find_commands(pipex))
-		return (false);
 	pipex->envp = envp;
 	pipex->infile = open(argv[1], O_RDONLY);
 	if (pipex->infile == -1)
@@ -112,6 +112,8 @@ bool	parse_input(t_pipex *pipex, char **argv, char **envp)
 	pipex->outfile = open(argv[pipex->size + 2],
 			O_WRONLY | O_CREAT | O_TRUNC, 0777);
 	if (pipex->outfile == -1)
+		return (false);
+	if (!find_paths(pipex, envp) || !find_commands(pipex))
 		return (false);
 	return (true);
 }

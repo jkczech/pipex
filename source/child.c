@@ -6,7 +6,7 @@
 /*   By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 16:41:26 by jkoupy            #+#    #+#             */
-/*   Updated: 2023/12/07 17:44:53 by jkoupy           ###   ########.fr       */
+/*   Updated: 2023/12/11 19:48:03 by jkoupy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,12 @@ void	redirect(int left, int right)
 //handling different kinds of child processes
 bool	child(t_pipex pipex, int i)
 {
-	if (!pipex.cmds[i].path)
+	if (!pipex.cmds[i].found)
+	{
+		close_pipes(&pipex);
+		free_pipex(&pipex);
 		exit(1);
+	}
 	if (i == 0)
 		first_child(pipex, i);
 	else if (i != pipex.size - 1)

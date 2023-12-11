@@ -6,7 +6,7 @@
 /*   By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 14:27:19 by jkoupy            #+#    #+#             */
-/*   Updated: 2023/12/11 18:40:21 by jkoupy           ###   ########.fr       */
+/*   Updated: 2023/12/11 19:47:05 by jkoupy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,15 +28,16 @@
 
 typedef struct s_cmd
 {
+	bool	found;
 	char	*path;
 	char	**args;
 }	t_cmd;
 
 typedef struct s_pipex
 {
+	int		size;
 	int		infile;
 	int		outfile;
-	int		size;
 	t_cmd	*cmds;
 	int		**pipes;
 	char	**paths;
@@ -55,7 +56,7 @@ bool	create_pipes(t_pipex *pipex);
 bool	wait_pids(t_pipex pipex);
 bool	execute(t_pipex pipex);
 bool	allocate_pids(t_pipex *pipex);
-void	pipex_init(t_pipex *pipex);
+void	pipex_init(t_pipex *pipex, int argc);
 
 //parse.c
 
