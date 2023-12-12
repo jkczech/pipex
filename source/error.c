@@ -6,7 +6,7 @@
 /*   By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 09:46:06 by jkoupy            #+#    #+#             */
-/*   Updated: 2023/12/12 11:58:09 by jkoupy           ###   ########.fr       */
+/*   Updated: 2023/12/12 14:10:28 by jkoupy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	cmd_not_found(t_pipex *pipex, int i)
 }
 
 //prints a zsh like error message
-//skips first if not first found
+//permission denied
 void	permission_denied(char *file)
 {
 	ft_putstr_fd("pipex: permission denied: ", 2);
@@ -43,7 +43,7 @@ void	permission_denied(char *file)
 }
 
 //prints a zsh like error message
-//skips first if not first found
+//no such file or directory
 void	no_such_file(char *file)
 {
 	ft_putstr_fd("pipex: no such file or directory: ", 2);

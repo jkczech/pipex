@@ -6,7 +6,7 @@
 /*   By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 13:23:11 by jkoupy            #+#    #+#             */
-/*   Updated: 2023/12/12 11:49:26 by jkoupy           ###   ########.fr       */
+/*   Updated: 2023/12/12 14:22:27 by jkoupy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,30 @@ bool	find_paths(t_pipex *pipex, char **envp)
 	return (true);
 }
 
+bool	open_files(t_pipex *pipex, char **argv)
+{
+	pipex->infile = open(argv[1], O_RDONLY);
+	if (pipex->infile == -1)
+	{
+		if (access(argv[1], F_OK) != 0)
+			no_such_file(argv[1]);
+		else if (access(argv[1], R_OK) != 0)
+			permission_denied(argv[1]);
+		else
+			ft_putstr_fd("Something went wrong", 2);
+		pipex->skip_first = true;
+	}
+	pipex->outfile = open(argv[pipex->size + 2],
+			O_WRONLY | O_CREAT | O_TRUNC, 0777);
+	if (pipex->outfile == -1)
+	{
+		if (access(argv[pipex->size + 2], R_OK) != 0)
+			permission_denied(argv[1]);
+		return (false);
+	}
+	return (true);
+}
+
 //read all the commands, infile, outfile, opens fd's for files
 //return value: if any error false at first error, else true
 bool	parse_input(t_pipex *pipex, char **argv, char **envp)
@@ -94,12 +118,7 @@ bool	parse_input(t_pipex *pipex, char **argv, char **envp)
 		i++;
 	}
 	pipex->envp = envp;
-	pipex->infile = open(argv[1], O_RDONLY);
-	if (pipex->infile == -1)
-		pipex->skip_first = true;
-	pipex->outfile = open(argv[pipex->size + 2],
-			O_WRONLY | O_CREAT | O_TRUNC, 0777);
-	if (pipex->outfile == -1)
+	if (!open_files(pipex, argv))
 		return (false);
 	if (!find_paths(pipex, envp) || !find_commands(pipex))
 		return (false);

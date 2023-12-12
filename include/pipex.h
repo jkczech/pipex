@@ -6,7 +6,7 @@
 /*   By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 14:27:19 by jkoupy            #+#    #+#             */
-/*   Updated: 2023/12/12 11:58:26 by jkoupy           ###   ########.fr       */
+/*   Updated: 2023/12/12 14:17:12 by jkoupy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ bool	find_paths(t_pipex *pipex, char **envp);
 bool	parse_input(t_pipex *pipex, char **argv, char **envp);
 bool	find_commands(t_pipex *pipex);
 bool	is_command(t_pipex *pipex, char *command, int i);
+bool	open_files(t_pipex *pipex, char **argv);
 
 //print.c
 
