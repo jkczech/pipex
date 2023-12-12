@@ -6,7 +6,7 @@
 /*   By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 14:27:19 by jkoupy            #+#    #+#             */
-/*   Updated: 2023/12/12 15:10:42 by jkoupy           ###   ########.fr       */
+/*   Updated: 2023/12/12 16:42:05 by jkoupy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ typedef struct s_pipex
 	t_cmd	*cmds;
 	int		**pipes;
 	char	**paths;
+	char	**argv;
 	char	**envp;
 	int		*child_pids;
 	bool	skip_first;
@@ -49,7 +50,7 @@ typedef struct s_pipex
 //main.c
 
 int		main(int argc, char **argv, char **envp);
-bool	find_paths(t_pipex *pipex, char **envp);
+bool	find_paths(t_pipex *pipex);
 
 //pipex.c
 
@@ -57,7 +58,7 @@ bool	create_pipes(t_pipex *pipex);
 bool	wait_pids(t_pipex pipex);
 bool	execute(t_pipex pipex);
 bool	allocate_pids(t_pipex *pipex);
-void	pipex_init(t_pipex *pipex, int argc);
+void	pipex_init(t_pipex *pipex, int argc, char **argv, char **envp);
 
 //parse.c
 
@@ -65,7 +66,7 @@ bool	is_command(t_pipex *pipex, char *command, int i);
 void	check_commands(t_pipex *pipex, int i);
 bool	find_commands(t_pipex *pipex);
 bool	open_files(t_pipex *pipex, char **argv);
-bool	parse_input(t_pipex *pipex, char **argv, char **envp);
+bool	parse_input(t_pipex *pipex, char **argv);
 
 //print.c
 

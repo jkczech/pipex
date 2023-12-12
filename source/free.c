@@ -6,7 +6,7 @@
 /*   By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 13:55:44 by jkoupy            #+#    #+#             */
-/*   Updated: 2023/12/11 19:50:29 by jkoupy           ###   ########.fr       */
+/*   Updated: 2023/12/12 16:39:31 by jkoupy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,8 @@ bool	free_pipex(t_pipex *pipex)
 		close(pipex->infile);
 	if (pipex->outfile != -1)
 		close(pipex->outfile);
-	free(pipex->child_pids);
+	if (pipex->child_pids)
+		free(pipex->child_pids);
 	return (true);
 }
 
