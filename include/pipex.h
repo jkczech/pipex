@@ -6,7 +6,7 @@
 /*   By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 14:27:19 by jkoupy            #+#    #+#             */
-/*   Updated: 2023/12/11 19:47:05 by jkoupy           ###   ########.fr       */
+/*   Updated: 2023/12/12 11:38:49 by jkoupy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ bool	find_paths(t_pipex *pipex, char **envp);
 bool	parse_input(t_pipex *pipex, char **argv, char **envp);
 bool	find_commands(t_pipex *pipex);
 bool	is_command(t_pipex *pipex, char *command, int i);
-void	cmd_not_found(t_pipex *pipex, int i);
 
 //print.c
 
@@ -87,5 +86,6 @@ bool	last_child(t_pipex pipex, int i);
 //error.c
 
 bool	error_message(void);
+void	cmd_not_found(t_pipex *pipex, int i);
 
 #endif

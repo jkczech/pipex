@@ -6,7 +6,7 @@
 /*   By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 13:23:11 by jkoupy            #+#    #+#             */
-/*   Updated: 2023/12/12 11:33:40 by jkoupy           ###   ########.fr       */
+/*   Updated: 2023/12/12 11:49:26 by jkoupy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ bool	is_command(t_pipex *pipex, char *command, int i)
 {
 	if (!command)
 		return (false);
-	if (access(command, F_OK) == 0 && ft_strncmp(command, "/", 1) == 0) //is comparing to slash enough
+	if (access(command, F_OK) == 0 && ft_strncmp(command, "/", 1) == 0)
 	{
 		pipex->cmds[i].path = ft_strdup(command);
 		if (!pipex->cmds[i].path)
