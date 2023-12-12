@@ -6,7 +6,7 @@
 /*   By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 14:26:55 by jkoupy            #+#    #+#             */
-/*   Updated: 2023/12/11 18:58:52 by jkoupy           ###   ########.fr       */
+/*   Updated: 2023/12/12 15:01:03 by jkoupy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,18 @@ int	main(int argc, char **argv, char **envp)
 		return (free_pipex(&pipex), error_message(), EXIT_FAILURE);
 	free_pipex(&pipex);
 	return (EXIT_SUCCESS);
+}
+
+//find PATH in environment variables and saves it into pipex
+bool	find_paths(t_pipex *pipex, char **envp)
+{
+	int	i;
+
+	i = 0;
+	while (envp && envp[i] && ft_strncmp(envp[i], "PATH", 4) != 0)
+		i++;
+	pipex->paths = ft_split(envp[i], ':');
+	if (!pipex->paths)
+		return (false);
+	return (true);
 }

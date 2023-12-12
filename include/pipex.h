@@ -6,7 +6,7 @@
 /*   By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 14:27:19 by jkoupy            #+#    #+#             */
-/*   Updated: 2023/12/12 14:17:12 by jkoupy           ###   ########.fr       */
+/*   Updated: 2023/12/12 15:10:42 by jkoupy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ typedef struct s_pipex
 //main.c
 
 int		main(int argc, char **argv, char **envp);
+bool	find_paths(t_pipex *pipex, char **envp);
 
 //pipex.c
 
@@ -60,11 +61,11 @@ void	pipex_init(t_pipex *pipex, int argc);
 
 //parse.c
 
-bool	find_paths(t_pipex *pipex, char **envp);
-bool	parse_input(t_pipex *pipex, char **argv, char **envp);
-bool	find_commands(t_pipex *pipex);
 bool	is_command(t_pipex *pipex, char *command, int i);
+void	check_commands(t_pipex *pipex, int i);
+bool	find_commands(t_pipex *pipex);
 bool	open_files(t_pipex *pipex, char **argv);
+bool	parse_input(t_pipex *pipex, char **argv, char **envp);
 
 //print.c
 
