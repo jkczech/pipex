@@ -6,7 +6,7 @@
 /*   By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 14:27:19 by jkoupy            #+#    #+#             */
-/*   Updated: 2023/12/12 11:38:49 by jkoupy           ###   ########.fr       */
+/*   Updated: 2023/12/12 11:58:26 by jkoupy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,5 +87,7 @@ bool	last_child(t_pipex pipex, int i);
 
 bool	error_message(void);
 void	cmd_not_found(t_pipex *pipex, int i);
+void	permission_denied(char *file);
+void	no_such_file(char *file);
 
 #endif
