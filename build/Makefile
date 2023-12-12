@@ -6,7 +6,7 @@
 #    By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/11 12:07:05 by jkoupy            #+#    #+#              #
-#    Updated: 2023/12/12 11:46:02 by jkoupy           ###   ########.fr        #
+#    Updated: 2023/12/12 13:54:16 by jkoupy           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,48 +37,49 @@ OBJS = $(addprefix ../object/, $(SRCS:.c=.o))
 
 all: $(LIBFT) $(PRINTF) $(NAME)
 
-.SILENT:
 
 ../object/%.o: ../source/%.c 
-	mkdir -p $(dir $@)
-	printf "$(ORANGE).$(END)";
-	$(CC) -c $(CFLAGS) $< -o $@
+	@mkdir -p $(dir $@)
+	@printf "$(ORANGE).$(END)";
+	@$(CC) -c $(CFLAGS) $< -o $@
 
 $(NAME):	$(OBJS) $(LIBFT) $(PRINTF)
-	$(CC) $(OBJS) $(CC_FLAGS) $(LIBFT) $(PRINTF) -o $(NAME)
-	printf "\r$(GREEN)🚀 ./$(NAME)      created                    \n$(END)"
+	@$(CC) $(OBJS) $(CC_FLAGS) $(LIBFT) $(PRINTF) -o $(NAME)
+	@printf "\r$(GREEN)🚀 ./$(NAME)      created                    \n$(END)"
+
 
 $(LIBFT):
-	printf "$(ORANGE)🔁 ./$(NAME)    compiling$(END)"
-	make bonus -sC library/libft/build
+	@printf "$(ORANGE)🔁 ./$(NAME)    compiling$(END)"
+	@make bonus -sC ../library/libft/build
 
 $(PRINTF):
-	printf "$(ORANGE).$(END)";
-	make  -sC library/printf/build
+	@printf "$(ORANGE).$(END)";
+	@make -sC ../library/printf/build
 
 clean:
-	$(RM) $(OBJ_DIR)
-	make clean -sC ../library/libft/build
-	make clean -sC ../library/printf/build
-	printf "$(RED)💥 object files\tremoved\n$(END)"
+	@$(RM) $(OBJ_DIR)
+	@make clean -sC ../library/libft/build
+	@make clean -sC ../library/printf/build
+	@printf "$(RED)💥 object files\tremoved\n$(END)"
 
 fclean: clean
-	make fclean -sC ../library/libft/build
-	make fclean -sC ../library/printf/build
-	$(RM) $(NAME)
-	printf "$(RED)💥 ./$(NAME) \tremoved\n$(END)"
+	@make fclean -sC ../library/libft/build
+	@make fclean -sC ../library/printf/build
+	@$(RM) $(NAME)
+	@printf "$(RED)💥 ./$(NAME) \tremoved\n$(END)"
 
 #clean files other than 'Makefile' or 'pipex'
 cleanf:
-	find . -type f ! -name 'Makefile' ! -name 'pipex' -delete
+	@printf "$(RED)💥 test files \tremoved\n$(END)"
+	@find . -type f ! -name 'Makefile' ! -name 'pipex' -delete
 
 re: _rebuild fclean all
 
 _rebuild:
-	printf "$(ORANGE)🚧 ./$(NAME)\trebuild\n$(END)"
+	@printf "$(ORANGE)🚧 ./$(NAME)\trebuild\n$(END)"
 
 nothing:
-	printf "$(BROWN)💩 made $(RED)n$(ORANGE)o$(YELLOW)t$(GREEN)h$(BLUE)i$(INDIGO)n$(VIOLET)g\n$(END)"
+	@printf "💩$(BROWN) made $(RED)n$(ORANGE)o$(YELLOW)t$(GREEN)h$(BLUE)i$(INDIGO)n$(VIOLET)g\n$(END)"
 
 #-include $(DEPS)
 

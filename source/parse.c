@@ -6,7 +6,7 @@
 /*   By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 13:23:11 by jkoupy            #+#    #+#             */
-/*   Updated: 2023/12/12 14:22:27 by jkoupy           ###   ########.fr       */
+/*   Updated: 2023/12/12 14:42:27 by jkoupy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ bool	find_commands(t_pipex *pipex)
 	while (i++ < pipex->size - 1)
 	{
 		j = 0;
+		if (i == 0 && pipex->skip_first)
+			continue ;
 		if (pipex->cmds[i].args[0]
 			&& is_command(pipex, ft_strdup(pipex->cmds[i].args[0]), i))
 			break ;
@@ -86,7 +88,7 @@ bool	open_files(t_pipex *pipex, char **argv)
 		else if (access(argv[1], R_OK) != 0)
 			permission_denied(argv[1]);
 		else
-			ft_putstr_fd("Something went wrong", 2);
+			ft_putstr_fd("Something went wrong\n", 2);
 		pipex->skip_first = true;
 	}
 	pipex->outfile = open(argv[pipex->size + 2],
