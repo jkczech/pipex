@@ -6,7 +6,7 @@
 #    By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/11 12:07:05 by jkoupy            #+#    #+#              #
-#    Updated: 2023/12/12 11:34:25 by jkoupy           ###   ########.fr        #
+#    Updated: 2023/12/12 11:46:02 by jkoupy           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,21 +18,22 @@ BLUE = \033[38;5;027;1m
 INDIGO = \033[38;5;093;1m
 VIOLET = \033[38;5;163;1m
 WHITE = \033[38;5;231;1m
+BROWN = \033[38;5;137;1m
 END = \033[0m
 
 NAME = pipex
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -MD -MP
+CFLAGS = -Wall -Wextra -Werror #-MD -MP
 RM = rm -rf
 
 LIBFT = 	../library/libft/build/libft.a
 PRINTF = 	../library/printf/build/printf.a
 
 SRCS = 	main.c print.c free.c parse.c child.c error.c pipex.c
-OBJ_DIR = object
+OBJ_DIR = ../object
 OBJS = $(addprefix ../object/, $(SRCS:.c=.o))
-DEPS = $(addprefix ../object/, $(SRCS:.c=.d))
+#DEPS = $(addprefix ../object/, $(SRCS:.c=.d))
 
 all: $(LIBFT) $(PRINTF) $(NAME)
 
@@ -77,8 +78,8 @@ _rebuild:
 	printf "$(ORANGE)🚧 ./$(NAME)\trebuild\n$(END)"
 
 nothing:
-	printf "$(WHITE)💩 made $(RED)n$(ORANGE)o$(YELLOW)t$(GREEN)h$(BLUE)i$(INDIGO)n$(VIOLET)g\n$(END)"
+	printf "$(BROWN)💩 made $(RED)n$(ORANGE)o$(YELLOW)t$(GREEN)h$(BLUE)i$(INDIGO)n$(VIOLET)g\n$(END)"
 
--include $(DEPS)
+#-include $(DEPS)
 
 .PHONY: all clean fclean cleanf re _rebuild nothing
