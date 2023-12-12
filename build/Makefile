@@ -6,7 +6,7 @@
 #    By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/11 12:07:05 by jkoupy            #+#    #+#              #
-#    Updated: 2023/12/11 19:57:30 by jkoupy           ###   ########.fr        #
+#    Updated: 2023/12/12 11:34:25 by jkoupy           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ LIBFT = 	../library/libft/build/libft.a
 PRINTF = 	../library/printf/build/printf.a
 
 SRCS = 	main.c print.c free.c parse.c child.c error.c pipex.c
-OBJ_DIR = ../object
+OBJ_DIR = object
 OBJS = $(addprefix ../object/, $(SRCS:.c=.o))
 DEPS = $(addprefix ../object/, $(SRCS:.c=.d))
 
@@ -43,17 +43,17 @@ all: $(LIBFT) $(PRINTF) $(NAME)
 	printf "$(ORANGE).$(END)";
 	$(CC) -c $(CFLAGS) $< -o $@
 
-$(NAME):	$(OBJS) $(LIBFT)
+$(NAME):	$(OBJS) $(LIBFT) $(PRINTF)
 	$(CC) $(OBJS) $(CC_FLAGS) $(LIBFT) $(PRINTF) -o $(NAME)
 	printf "\r$(GREEN)🚀 ./$(NAME)      created                    \n$(END)"
 
 $(LIBFT):
 	printf "$(ORANGE)🔁 ./$(NAME)    compiling$(END)"
-	make bonus -sC ../library/libft/build
+	make bonus -sC library/libft/build
 
 $(PRINTF):
 	printf "$(ORANGE).$(END)";
-	make  -sC ../library/printf/build
+	make  -sC library/printf/build
 
 clean:
 	$(RM) $(OBJ_DIR)
