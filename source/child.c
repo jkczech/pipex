@@ -6,7 +6,7 @@
 /*   By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 16:41:26 by jkoupy            #+#    #+#             */
-/*   Updated: 2023/12/13 13:20:46 by jkoupy           ###   ########.fr       */
+/*   Updated: 2023/12/13 13:30:11 by jkoupy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ void	redirect(t_pipex pipex, int input, int output)
 	close(output);
 }
 
-//handling different kinds of child processes
-bool	children(t_pipex pipex, int i)
+//handling different kinds of child processes, first, middle, last
+void	children(t_pipex pipex, int i)
 {
 	if (!pipex.cmds[i].found)
 	{
@@ -51,7 +51,7 @@ bool	children(t_pipex pipex, int i)
 }
 
 //handling first child process, connects to infile
-bool	child(t_pipex pipex, int i, int input, int output)
+void	child(t_pipex pipex, int i, int input, int output)
 {
 	redirect(pipex, input, output);
 	close_pipes(&pipex);
@@ -59,25 +59,6 @@ bool	child(t_pipex pipex, int i, int input, int output)
 	{
 		free_pipex(&pipex);
 		error_message();
-		exit(1);
 	}
-	return (true);
+	exit(1);
 }
-
-// //handling middle child processes connecting the previous pipe
-// bool	middle_child(t_pipex pipex, int i)
-// {
-// 	redirect(pipex.pipes[i - 1][0], pipex.pipes[i][1]);
-// 	close_pipes(&pipex);
-// 	execve(pipex.cmds[i].path, pipex.cmds[i].args, pipex.envp);
-// 	return (true);
-// }
-
-// //handling last child process, connects to outfile
-// bool	last_child(t_pipex pipex, int i)
-// {
-// 	redirect(pipex.pipes[i - 1][0], pipex.outfile);
-// 	close_pipes(&pipex);
-// 	execve(pipex.cmds[i].path, pipex.cmds[i].args, pipex.envp);
-// 	return (true);
-// }

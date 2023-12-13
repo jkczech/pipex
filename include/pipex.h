@@ -6,7 +6,7 @@
 /*   By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 14:27:19 by jkoupy            #+#    #+#             */
-/*   Updated: 2023/12/13 13:21:03 by jkoupy           ###   ########.fr       */
+/*   Updated: 2023/12/13 13:29:14 by jkoupy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,8 @@ bool	close_pipes(t_pipex *pipex);
 //child.c
 
 void	redirect(t_pipex pipex, int input, int output);
-bool	children(t_pipex pipex, int i);
-bool	child(t_pipex pipex, int i, int input, int output);
+void	children(t_pipex pipex, int i);
+void	child(t_pipex pipex, int i, int input, int output);
 
 //error.c
 
