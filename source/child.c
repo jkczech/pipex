@@ -6,7 +6,7 @@
 /*   By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 16:41:26 by jkoupy            #+#    #+#             */
-/*   Updated: 2023/12/11 19:48:03 by jkoupy           ###   ########.fr       */
+/*   Updated: 2023/12/13 12:15:40 by jkoupy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,14 @@
 
 //redirecting left to stdin and right to stdout
 //while closing left and right
-void	redirect(int left, int right)
+void	redirect(int input, int output)
 {
-	dup2(left, STDIN_FILENO);
-	close(left);
-	dup2(right, STDOUT_FILENO);
-	close(right);
+	if (dup2(input, STDIN_FILENO) == -1)
+		exit(1);
+	close(input);
+	if (dup2(output, STDOUT_FILENO) == -1)
+		exit(1);
+	close(output);
 }
 
 //handling different kinds of child processes

@@ -6,7 +6,7 @@
 /*   By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 11:34:49 by jkoupy            #+#    #+#             */
-/*   Updated: 2023/12/12 16:41:53 by jkoupy           ###   ########.fr       */
+/*   Updated: 2023/12/13 12:24:24 by jkoupy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,11 +75,6 @@ bool	execute(t_pipex pipex)
 	i = 0;
 	while (i < pipex.size)
 	{
-		if (i == 0 && pipex.skip_first)
-		{
-			i++;
-			continue ;
-		}
 		pid = fork();
 		if (pid == 0)
 			child(pipex, i);
@@ -96,7 +91,6 @@ bool	execute(t_pipex pipex)
 void	pipex_init(t_pipex *pipex, int argc, char **argv, char **envp)
 {
 	pipex->size = argc - 3;
-	pipex->skip_first = false;
 	pipex->paths = NULL;
 	pipex->infile = -1;
 	pipex->outfile = -1;

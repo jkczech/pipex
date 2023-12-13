@@ -6,7 +6,7 @@
 /*   By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 09:46:06 by jkoupy            #+#    #+#             */
-/*   Updated: 2023/12/12 14:10:28 by jkoupy           ###   ########.fr       */
+/*   Updated: 2023/12/13 12:24:59 by jkoupy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,6 @@ void	cmd_not_found(t_pipex *pipex, int i)
 	ft_putstr_fd(pipex->cmds[i].args[0], 2);
 	ft_putstr_fd("\n", 2);
 	pipex->cmds[i].found = false;
-	if (i == 0)
-		pipex->skip_first = true;
 }
 
 //prints a zsh like error message
