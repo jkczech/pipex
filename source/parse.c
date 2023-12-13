@@ -6,7 +6,7 @@
 /*   By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 13:23:11 by jkoupy            #+#    #+#             */
-/*   Updated: 2023/12/12 16:44:25 by jkoupy           ###   ########.fr       */
+/*   Updated: 2023/12/13 12:06:57 by jkoupy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,14 +58,12 @@ void	check_commands(t_pipex *pipex, int i)
 bool	find_commands(t_pipex *pipex)
 {
 	int		i;
-	int		j;
 	bool	ret;
 
 	ret = true;
 	i = -1;
 	while (i++ < pipex->size - 1)
 	{
-		j = 0;
 		if (i == 0 && pipex->skip_first)
 			continue ;
 		if (pipex->cmds[i].args[0]
@@ -97,7 +95,7 @@ bool	open_files(t_pipex *pipex, char **argv)
 			permission_denied(argv[pipex->size + 2]);
 		else
 			ft_putstr_fd("Error: outfile undefined\n", 2);
-		return (false);
+		return (true);
 	}
 	return (true);
 }
