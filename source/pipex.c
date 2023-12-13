@@ -6,7 +6,7 @@
 /*   By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 11:34:49 by jkoupy            #+#    #+#             */
-/*   Updated: 2023/12/13 12:24:24 by jkoupy           ###   ########.fr       */
+/*   Updated: 2023/12/13 13:14:57 by jkoupy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ bool	execute(t_pipex pipex)
 	{
 		pid = fork();
 		if (pid == 0)
-			child(pipex, i);
+			children(pipex, i);
 		else if (pid > 0)
 			pipex.child_pids[i] = pid;
 		else
