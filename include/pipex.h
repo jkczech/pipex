@@ -6,14 +6,13 @@
 /*   By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 14:27:19 by jkoupy            #+#    #+#             */
-/*   Updated: 2023/12/14 13:19:38 by jkoupy           ###   ########.fr       */
+/*   Updated: 2023/12/14 14:28:59 by jkoupy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PIPEX_H
 # define PIPEX_H
 
-# include "../library/printf/include/ft_printf.h"
 # include "../library/libft/include/libft.h"
 
 # include <fcntl.h>		//open, close, read, write
@@ -46,7 +45,7 @@ typedef struct s_pipex
 	int		*child_pids;
 }	t_pipex;
 
-//main.c
+//main.c or bonus_main.c
 
 int		main(int argc, char **argv, char **envp);
 

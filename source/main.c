@@ -6,7 +6,7 @@
 /*   By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 14:26:55 by jkoupy            #+#    #+#             */
-/*   Updated: 2023/12/14 13:06:28 by jkoupy           ###   ########.fr       */
+/*   Updated: 2023/12/14 14:23:06 by jkoupy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ int	main(int argc, char **argv, char **envp)
 {
 	t_pipex	pipex;
 
-	if (argc < 5)
+	if (argc != 5)
 	{
-		ft_putstr_fd("Error: Not enough arguments\n", 2);
+		ft_putstr_fd("Error: Wrong number of arguments\n", 2);
 		return (EXIT_FAILURE);
 	}
 	pipex_init(&pipex, argc, argv, envp);
