@@ -6,7 +6,7 @@
 #    By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/11 12:07:05 by jkoupy            #+#    #+#              #
-#    Updated: 2023/12/12 13:54:16 by jkoupy           ###   ########.fr        #
+#    Updated: 2023/12/14 10:43:59 by jkoupy           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,6 @@ OBJS = $(addprefix ../object/, $(SRCS:.c=.o))
 #DEPS = $(addprefix ../object/, $(SRCS:.c=.d))
 
 all: $(LIBFT) $(PRINTF) $(NAME)
-
 
 ../object/%.o: ../source/%.c 
 	@mkdir -p $(dir $@)

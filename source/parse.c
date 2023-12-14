@@ -6,7 +6,7 @@
 /*   By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 13:23:11 by jkoupy            #+#    #+#             */
-/*   Updated: 2023/12/13 12:24:51 by jkoupy           ###   ########.fr       */
+/*   Updated: 2023/12/14 13:06:38 by jkoupy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,45 +31,49 @@ bool	is_command(t_pipex *pipex, char *command, int i)
 	return (false);
 }
 
-//create all possible commands with the given input
-//join to path and try with access
-void	check_commands(t_pipex *pipex, int i)
-{
-	char	*command;
-	int		j;
-
-	j = 0;
-	while (pipex->paths[j])
-	{
-		command = ft_strjoin3(pipex->paths[j],
-				"/", pipex->cmds[i].args[0]);
-		if (!command)
-			continue ;
-		if (is_command(pipex, command, i))
-			break ;
-		j++;
-		if (!pipex->paths[j])
-			cmd_not_found(pipex, i);
-	}
-}
-
 //iterate through commands in pipex.cmd, and searches for paths
-//return value: true if all found, false if one or more not found
 bool	find_commands(t_pipex *pipex)
 {
+	char	*command;
 	int		i;
-	bool	ret;
+	int		j;
 
-	ret = true;
 	i = -1;
 	while (i++ < pipex->size - 1)
 	{
 		if (pipex->cmds[i].args[0]
 			&& is_command(pipex, ft_strdup(pipex->cmds[i].args[0]), i))
 			break ;
-		check_commands(pipex, i);
+		j = 0;
+		while (pipex->paths[j])
+		{
+			command = ft_strjoin3(pipex->paths[j],
+					"/", pipex->cmds[i].args[0]);
+			if (!command)
+				continue ;
+			if (is_command(pipex, command, i))
+				break ;
+			j++;
+			if (!pipex->paths[j])
+				cmd_not_found(pipex, i);
+		}
 	}
-	return (ret);
+	return (true);
+}
+
+//find PATH in environment variables and saves it into pipex
+bool	find_paths(t_pipex *pipex)
+{
+	int	i;
+
+	i = 0;
+	while (pipex->envp && pipex->envp[i]
+		&& ft_strncmp(pipex->envp[i], "PATH", 4) != 0)
+		i++;
+	pipex->paths = ft_split(pipex->envp[i], ':');
+	if (!pipex->paths)
+		return (false);
+	return (true);
 }
 
 bool	open_files(t_pipex *pipex, char **argv)
