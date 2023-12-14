@@ -6,7 +6,7 @@
 #    By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/11 12:07:05 by jkoupy            #+#    #+#              #
-#    Updated: 2023/12/14 15:52:38 by jkoupy           ###   ########.fr        #
+#    Updated: 2023/12/14 23:17:02 by jkoupy           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,35 +22,37 @@ BROWN = \033[38;5;137;1m
 END = \033[0m
 
 NAME = pipex
+BNAME = pipex_bonus
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror #-MD -MP
+CFLAGS = -Wall -Wextra -Werror -MD -MP
 RM = rm -rf
 
 LIBFT = 	../library/libft/build/libft.a
 
-SRCS = 	      main.c free.c parse.c child.c error.c pipex.c
-BSRCS = bonus_main.c free.c parse.c child.c error.c pipex.c
-OBJ_DIR = ../object
-OBJS =  $(addprefix $(OBJ_DIR)/, $(SRCS:.c=.o))
-BOBJS = $(addprefix $(OBJ_DIR)/, $(BSRCS:.c=.o))
-#DEPS = $(addprefix ../object/, $(SRCS:.c=.d))
+MSRCS = main.c free.c parse.c child.c error.c pipex.c
+BSRCS = main_bonus.c free.c parse.c child.c error.c pipex.c
+OBJ_DIR = ../object/
+MOBJS =  $(addprefix $(OBJ_DIR), $(MSRCS:.c=.o))
+BOBJS = $(addprefix $(OBJ_DIR), $(BSRCS:.c=.o))
+DEPS = $(addprefix .$(OBJ_DIR), $(MSRCS:.c=.d))
 
 all: $(LIBFT) $(NAME)
+
+bonus: $(LIBFT) $(BNAME)
 
 ../object/%.o: ../source/%.c 
 	@mkdir -p $(dir $@)
 	@printf "$(ORANGE).$(END)";
 	@$(CC) -c $(CFLAGS) $< -o $@
 
-$(NAME):	$(LIBFT) $(OBJS) 
-	@$(CC) $(OBJS) $(CC_FLAGS) $(LIBFT) -o $(NAME)
+$(NAME):	$(LIBFT) $(MOBJS) 
+	@rm -f ../object/main_bonus.o
+	@$(CC) $(MOBJS) $(CC_FLAGS) $(LIBFT) -o $(NAME)
 	@printf "\r$(GREEN)🚀 ./$(NAME)      created (mandatory)        \n$(END)"
 
-bonus: $(LIBFT) $(BOBJS)
-	@if [ -e $(OBJ_DIR)/main.o ]; then \
-		rm $(OBJ_DIR)/main.o; \
-	fi
+$(BNAME): $(LIBFT) $(BOBJS)
+	@rm -f ../object/main.o
 	@$(CC) $(BOBJS) $(CC_FLAGS) $(LIBFT) -o $(NAME)
 	@printf "\r$(GREEN)🚀 ./$(NAME)      created (bonus)            \n$(END)"
 
@@ -83,4 +85,4 @@ nothing:
 
 #-include $(DEPS)
 
-.PHONY: all clean fclean cleanf re _rebuild nothing
+.PHONY: all clean fclean cleanf re _rebuild nothing bonus
