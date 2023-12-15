@@ -6,7 +6,7 @@
 /*   By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 14:27:19 by jkoupy            #+#    #+#             */
-/*   Updated: 2023/12/15 13:40:51 by jkoupy           ###   ########.fr       */
+/*   Updated: 2023/12/15 14:49:20 by jkoupy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void	child(t_pipex pipex, int i, int input, int output);
 
 //error.c
 
-bool	error_message(void);
+void	error_message(char *file);
 void	cmd_not_found(t_pipex *pipex, int i);
 void	permission_denied(char *file);
 void	no_such_file(char *file);

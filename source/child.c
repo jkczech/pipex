@@ -6,7 +6,7 @@
 /*   By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 16:41:26 by jkoupy            #+#    #+#             */
-/*   Updated: 2023/12/13 13:30:11 by jkoupy           ###   ########.fr       */
+/*   Updated: 2023/12/15 14:49:50 by jkoupy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	child(t_pipex pipex, int i, int input, int output)
 	if (execve(pipex.cmds[i].path, pipex.cmds[i].args, pipex.envp) == -1)
 	{
 		free_pipex(&pipex);
-		error_message();
+		error_message(NULL);
 	}
 	exit(1);
 }
