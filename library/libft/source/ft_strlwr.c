@@ -6,21 +6,21 @@
 /*   By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 13:52:38 by jkoupy            #+#    #+#             */
-/*   Updated: 2023/12/15 14:00:06 by jkoupy           ###   ########.fr       */
+/*   Updated: 2023/12/15 14:07:52 by jkoupy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/libft.h"
 
-char *ft_strlwr(char *str)
+char	*ft_strlwr(char *str)
 {
-    int i;
+	int	i;
 
-    i = 0;
-    while (str[i])
-    {
-        str[i] = ft_tolower(str[i]);
-        i++;
-    }
-    return (str);
+	i = 0;
+	while (str[i])
+	{
+		str[i] = ft_tolower(str[i]);
+		i++;
+	}
+	return (str);
 }
