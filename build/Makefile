@@ -6,7 +6,7 @@
 #    By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/11 12:07:05 by jkoupy            #+#    #+#              #
-#    Updated: 2023/12/15 11:39:39 by jkoupy           ###   ########.fr        #
+#    Updated: 2023/12/15 12:05:36 by jkoupy           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,14 +47,11 @@ bonus: $(LIBFT) $(BNAME)
 	@$(CC) -c $(CFLAGS) $< -o $@
 
 $(NAME):	$(LIBFT) $(MOBJS) 
-	@$(RM) ../object/main_bonus.o ../object/main_bonus.d $(BNAME)
 	@$(CC) $(MOBJS) $(CC_FLAGS) $(LIBFT) -o $(NAME)
 	@printf "\r$(GREEN)🚀 ./$(NAME)      created (mandatory)        \n$(END)"
 
 $(BNAME): $(LIBFT) $(BOBJS)
-	@$(RM) ../object/main.o ../object/main.d
-	@$(CC) $(BOBJS) $(CC_FLAGS) $(LIBFT) -o $(NAME)
-	@touch $(BNAME)
+	@$(CC) $(BOBJS) $(CC_FLAGS) $(LIBFT) -o $(BNAME)
 	@printf "\r$(GREEN)🚀 ./$(NAME)      created (bonus)            \n$(END)"
 
 $(LIBFT):
@@ -74,7 +71,7 @@ fclean: clean
 #clean files other than 'Makefile' or 'pipex'
 cleanf:
 	@printf "$(RED)💥 test files \tremoved\n$(END)"
-	@find . -type f ! -name 'Makefile' ! -name 'pipex' -delete
+	@find . -type f ! -name 'Makefile' ! -name $(NAME) ! -name $(BNAME) -delete
 
 re: _rebuild fclean all
 
