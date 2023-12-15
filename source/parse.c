@@ -6,7 +6,7 @@
 /*   By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 13:23:11 by jkoupy            #+#    #+#             */
-/*   Updated: 2023/12/14 13:06:38 by jkoupy           ###   ########.fr       */
+/*   Updated: 2023/12/15 13:35:43 by jkoupy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ bool	find_paths(t_pipex *pipex)
 	while (pipex->envp && pipex->envp[i]
 		&& ft_strncmp(pipex->envp[i], "PATH", 4) != 0)
 		i++;
-	pipex->paths = ft_split(pipex->envp[i], ':');
+	pipex->paths = ft_split(pipex->envp[i] + 5, ':');
 	if (!pipex->paths)
 		return (false);
 	return (true);
