@@ -6,7 +6,7 @@
 /*   By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 09:46:06 by jkoupy            #+#    #+#             */
-/*   Updated: 2023/12/15 14:49:29 by jkoupy           ###   ########.fr       */
+/*   Updated: 2023/12/15 14:58:24 by jkoupy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 //printing "Error: " + strerror(errno)
 void	error_message(char *file)
 {
-	ft_putstr_fd("Error: ", 2);
+	ft_putstr_fd("Pipex: ", 2);
 	ft_putstr_fd(strerror(errno), 2);
 	if (file)
 	{

@@ -6,7 +6,7 @@
 /*   By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 13:23:11 by jkoupy            #+#    #+#             */
-/*   Updated: 2023/12/15 14:50:41 by jkoupy           ###   ########.fr       */
+/*   Updated: 2023/12/15 15:06:47 by jkoupy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,9 +107,6 @@ bool	parse_input(t_pipex *pipex, char **argv)
 {
 	int	i;
 
-	pipex->cmds = malloc(pipex->size * sizeof(t_cmd));
-	if (!pipex->cmds)
-		return (false);
 	i = 0;
 	while (i < pipex->size)
 	{

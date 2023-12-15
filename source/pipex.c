@@ -6,7 +6,7 @@
 /*   By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 11:34:49 by jkoupy            #+#    #+#             */
-/*   Updated: 2023/12/13 13:14:57 by jkoupy           ###   ########.fr       */
+/*   Updated: 2023/12/15 15:12:02 by jkoupy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,8 +88,10 @@ bool	execute(t_pipex pipex)
 	return (wait_pids(pipex), free(pipex.child_pids), true);
 }
 
-void	pipex_init(t_pipex *pipex, int argc, char **argv, char **envp)
+bool	pipex_init(t_pipex *pipex, int argc, char **argv, char **envp)
 {
+	int	i;
+
 	pipex->size = argc - 3;
 	pipex->paths = NULL;
 	pipex->infile = -1;
@@ -99,4 +101,16 @@ void	pipex_init(t_pipex *pipex, int argc, char **argv, char **envp)
 	pipex->argv = argv;
 	pipex->envp = envp;
 	pipex->child_pids = NULL;
+	pipex->cmds = malloc(pipex->size * sizeof(t_cmd));
+	if (!pipex->cmds)
+		return (false);
+	i = 0;
+	while (i < pipex->size)
+	{
+		pipex->cmds[i].args = NULL;
+		pipex->cmds[i].found = false;
+		pipex->cmds[i].path = NULL;
+		i++;
+	}
+	return (true);
 }

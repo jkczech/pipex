@@ -6,7 +6,7 @@
 /*   By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 14:27:19 by jkoupy            #+#    #+#             */
-/*   Updated: 2023/12/15 14:49:20 by jkoupy           ###   ########.fr       */
+/*   Updated: 2023/12/15 15:07:47 by jkoupy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ bool	create_pipes(t_pipex *pipex);
 bool	wait_pids(t_pipex pipex);
 bool	execute(t_pipex pipex);
 bool	allocate_pids(t_pipex *pipex);
-void	pipex_init(t_pipex *pipex, int argc, char **argv, char **envp);
+bool	pipex_init(t_pipex *pipex, int argc, char **argv, char **envp);
 
 //parse.c
 
