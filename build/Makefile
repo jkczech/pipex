@@ -6,7 +6,7 @@
 #    By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/11 12:07:05 by jkoupy            #+#    #+#              #
-#    Updated: 2023/12/14 23:17:02 by jkoupy           ###   ########.fr        #
+#    Updated: 2023/12/15 11:39:39 by jkoupy           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,7 @@ BSRCS = main_bonus.c free.c parse.c child.c error.c pipex.c
 OBJ_DIR = ../object/
 MOBJS =  $(addprefix $(OBJ_DIR), $(MSRCS:.c=.o))
 BOBJS = $(addprefix $(OBJ_DIR), $(BSRCS:.c=.o))
-DEPS = $(addprefix .$(OBJ_DIR), $(MSRCS:.c=.d))
+DEPS = $(addprefix $(OBJ_DIR), $(MSRCS:.c=.d))
 
 all: $(LIBFT) $(NAME)
 
@@ -47,13 +47,14 @@ bonus: $(LIBFT) $(BNAME)
 	@$(CC) -c $(CFLAGS) $< -o $@
 
 $(NAME):	$(LIBFT) $(MOBJS) 
-	@rm -f ../object/main_bonus.o
+	@$(RM) ../object/main_bonus.o ../object/main_bonus.d $(BNAME)
 	@$(CC) $(MOBJS) $(CC_FLAGS) $(LIBFT) -o $(NAME)
 	@printf "\r$(GREEN)🚀 ./$(NAME)      created (mandatory)        \n$(END)"
 
 $(BNAME): $(LIBFT) $(BOBJS)
-	@rm -f ../object/main.o
+	@$(RM) ../object/main.o ../object/main.d
 	@$(CC) $(BOBJS) $(CC_FLAGS) $(LIBFT) -o $(NAME)
+	@touch $(BNAME)
 	@printf "\r$(GREEN)🚀 ./$(NAME)      created (bonus)            \n$(END)"
 
 $(LIBFT):
@@ -67,7 +68,7 @@ clean:
 
 fclean: clean
 	@make fclean -sC ../library/libft/build
-	@$(RM) $(NAME)
+	@$(RM) $(NAME) $(BNAME)
 	@printf "$(RED)💥 ./$(NAME) \tremoved\n$(END)"
 
 #clean files other than 'Makefile' or 'pipex'
