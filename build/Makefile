@@ -6,7 +6,7 @@
 #    By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/11 12:07:05 by jkoupy            #+#    #+#              #
-#    Updated: 2023/12/15 12:05:36 by jkoupy           ###   ########.fr        #
+#    Updated: 2023/12/15 12:07:03 by jkoupy           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ NAME = pipex
 BNAME = pipex_bonus
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -MD -MP
+CFLAGS = -Wall -Wextra -Werror #-MD -MP
 RM = rm -rf
 
 LIBFT = 	../library/libft/build/libft.a
@@ -35,7 +35,7 @@ BSRCS = main_bonus.c free.c parse.c child.c error.c pipex.c
 OBJ_DIR = ../object/
 MOBJS =  $(addprefix $(OBJ_DIR), $(MSRCS:.c=.o))
 BOBJS = $(addprefix $(OBJ_DIR), $(BSRCS:.c=.o))
-DEPS = $(addprefix $(OBJ_DIR), $(MSRCS:.c=.d))
+#DEPS = $(addprefix $(OBJ_DIR), $(MSRCS:.c=.d))
 
 all: $(LIBFT) $(NAME)
 
