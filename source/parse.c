@@ -6,7 +6,7 @@
 /*   By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 13:23:11 by jkoupy            #+#    #+#             */
-/*   Updated: 2023/12/15 15:06:47 by jkoupy           ###   ########.fr       */
+/*   Updated: 2023/12/16 12:36:57 by jkoupy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,24 +78,24 @@ bool	find_paths(t_pipex *pipex)
 	return (true);
 }
 
-void	open_files(t_pipex *pipex, char **argv)
+void	open_files(t_pipex *pipex)
 {
-	pipex->infile = open(argv[1], O_RDONLY);
+	pipex->infile = open(pipex->argv[1], O_RDONLY);
 	if (pipex->infile == -1)
 	{
-		if (access(argv[1], F_OK) != 0)
-			error_message(argv[1]);
-		else if (access(argv[1], R_OK) != 0)
-			error_message(argv[1]);
+		if (access(pipex->argv[1], F_OK) != 0)
+			error_message(pipex->argv[1]);
+		else if (access(pipex->argv[1], R_OK) != 0)
+			error_message(pipex->argv[1]);
 		else
 			ft_putstr_fd("Error: infile undefined\n", 2);
 	}
-	pipex->outfile = open(argv[pipex->size + 2],
+	pipex->outfile = open(pipex->argv[pipex->size + 2],
 			O_WRONLY | O_CREAT | O_TRUNC, 0777);
 	if (pipex->outfile == -1)
 	{
-		if (access(argv[pipex->size + 2], R_OK) != 0)
-			error_message(argv[pipex->size + 2]);
+		if (access(pipex->argv[pipex->size + 2], R_OK) != 0)
+			error_message(pipex->argv[pipex->size + 2]);
 		else
 			ft_putstr_fd("Error: outfile undefined\n", 2);
 	}
@@ -103,7 +103,7 @@ void	open_files(t_pipex *pipex, char **argv)
 
 //read all the commands, infile, outfile, opens fd's for files
 //return value: if any error false at first error, else true
-bool	parse_input(t_pipex *pipex, char **argv)
+bool	parse_input(t_pipex *pipex)
 {
 	int	i;
 
@@ -111,14 +111,14 @@ bool	parse_input(t_pipex *pipex, char **argv)
 	while (i < pipex->size)
 	{
 		pipex->cmds[i].found = false;
-		pipex->cmds[i].args = ft_split(argv[i + 2], ' ');
+		pipex->cmds[i].args = ft_split(pipex->argv[i + 2], ' ');
 		if (!pipex->cmds[i].args)
 			return (false);
 		i++;
 	}
 	if (!find_paths(pipex))
 		return (false);
-	open_files(pipex, argv);
+	open_files(pipex);
 	if (!find_commands(pipex))
 		return (false);
 	return (true);
