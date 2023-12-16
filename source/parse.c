@@ -6,7 +6,7 @@
 /*   By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 13:23:11 by jkoupy            #+#    #+#             */
-/*   Updated: 2023/12/16 12:36:57 by jkoupy           ###   ########.fr       */
+/*   Updated: 2023/12/16 13:28:44 by jkoupy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ bool	is_command(t_pipex *pipex, char *command, int i)
 		pipex->cmds[i].found = true;
 		return (true);
 	}
-	pipex->cmds[i].path = NULL;
 	free(command);
 	return (false);
 }
@@ -78,6 +77,7 @@ bool	find_paths(t_pipex *pipex)
 	return (true);
 }
 
+//opens infile and outfile, shows errors respectively
 void	open_files(t_pipex *pipex)
 {
 	pipex->infile = open(pipex->argv[1], O_RDONLY);
@@ -94,7 +94,7 @@ void	open_files(t_pipex *pipex)
 			O_WRONLY | O_CREAT | O_TRUNC, 0777);
 	if (pipex->outfile == -1)
 	{
-		if (access(pipex->argv[pipex->size + 2], R_OK) != 0)
+		if (access(pipex->argv[pipex->size + 2], W_OK) != 0)
 			error_message(pipex->argv[pipex->size + 2]);
 		else
 			ft_putstr_fd("Error: outfile undefined\n", 2);

@@ -6,14 +6,14 @@
 /*   By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 16:41:26 by jkoupy            #+#    #+#             */
-/*   Updated: 2023/12/15 14:49:50 by jkoupy           ###   ########.fr       */
+/*   Updated: 2023/12/16 13:44:09 by jkoupy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pipex.h"
 
-//redirecting left to stdin and right to stdout
-//while closing left and right
+//redirect input to stdin and output to stdout
+//close input and output fds of all other unused pipes in current process
 void	redirect(t_pipex pipex, int input, int output)
 {
 	if (dup2(input, STDIN_FILENO) == -1)
@@ -50,7 +50,7 @@ void	children(t_pipex pipex, int i)
 	exit(1);
 }
 
-//handling first child process, connects to infile
+//handle child processes, execute commands, else error message
 void	child(t_pipex pipex, int i, int input, int output)
 {
 	redirect(pipex, input, output);

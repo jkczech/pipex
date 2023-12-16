@@ -6,12 +6,13 @@
 /*   By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 13:34:37 by jkoupy            #+#    #+#             */
-/*   Updated: 2023/12/16 12:40:06 by jkoupy           ###   ########.fr       */
+/*   Updated: 2023/12/16 13:40:31 by jkoupy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pipex.h"
 
+//the difference from main.c is the argc check
 int	main(int argc, char **argv, char **envp)
 {
 	t_pipex	pipex;

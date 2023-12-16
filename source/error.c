@@ -6,23 +6,32 @@
 /*   By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 09:46:06 by jkoupy            #+#    #+#             */
-/*   Updated: 2023/12/15 14:58:24 by jkoupy           ###   ########.fr       */
+/*   Updated: 2023/12/16 13:43:35 by jkoupy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pipex.h"
 
-//printing "Error: " + strerror(errno)
+//printing error in the zsh format (also lower capitalized)
 void	error_message(char *file)
 {
+	char	*message;
+
 	ft_putstr_fd("Pipex: ", 2);
-	ft_putstr_fd(strerror(errno), 2);
+	message = ft_strdup(strerror(errno));
+	message = ft_strlwr(message);
+	if (message)
+		ft_putstr_fd(message, 2);
+	else
+		ft_putstr_fd("error allocating error_message", 2);
 	if (file)
 	{
 		ft_putstr_fd(": ", 2);
 		ft_putstr_fd(file, 2);
 	}
 	ft_putstr_fd("\n", 2);
+	if (message)
+		free(message);
 }
 
 //prints a zsh like error message, sets cmd to not found

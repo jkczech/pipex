@@ -6,7 +6,7 @@
 /*   By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 11:34:49 by jkoupy            #+#    #+#             */
-/*   Updated: 2023/12/15 15:12:02 by jkoupy           ###   ########.fr       */
+/*   Updated: 2023/12/16 13:39:58 by jkoupy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ bool	wait_pids(t_pipex pipex)
 	return (true);
 }
 
+//allocate array of ints for the pids of child processes
 bool	allocate_pids(t_pipex *pipex)
 {
 	int	i;
@@ -88,6 +89,8 @@ bool	execute(t_pipex pipex)
 	return (wait_pids(pipex), free(pipex.child_pids), true);
 }
 
+//initialize the whole structure
+//allocate memory for commands
 bool	pipex_init(t_pipex *pipex, int argc, char **argv, char **envp)
 {
 	int	i;

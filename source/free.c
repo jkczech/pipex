@@ -6,13 +6,13 @@
 /*   By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 13:55:44 by jkoupy            #+#    #+#             */
-/*   Updated: 2023/12/12 16:39:31 by jkoupy           ###   ########.fr       */
+/*   Updated: 2023/12/16 13:40:51 by jkoupy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pipex.h"
 
-//close all the pipes created, frees pipes, and frees the pipe array
+//close all the pipes created, free pipes, and free the pipe array
 bool	close_pipes(t_pipex *pipex)
 {
 	int	i;
