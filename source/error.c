@@ -6,7 +6,7 @@
 /*   By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 09:46:06 by jkoupy            #+#    #+#             */
-/*   Updated: 2023/12/16 13:43:35 by jkoupy           ###   ########.fr       */
+/*   Updated: 2023/12/16 18:19:22 by jkoupy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	error_message(char *file)
 {
 	char	*message;
 
-	ft_putstr_fd("Pipex: ", 2);
+	ft_putstr_fd("pipex: ", 2);
 	message = ft_strdup(strerror(errno));
 	message = ft_strlwr(message);
 	if (message)
