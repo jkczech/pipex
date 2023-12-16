@@ -6,7 +6,7 @@
 /*   By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 14:27:19 by jkoupy            #+#    #+#             */
-/*   Updated: 2023/12/16 12:36:03 by jkoupy           ###   ########.fr       */
+/*   Updated: 2023/12/16 16:17:21 by jkoupy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ bool	pipex_init(t_pipex *pipex, int argc, char **argv, char **envp);
 //parse.c
 
 bool	is_command(t_pipex *pipex, char *command, int i);
-bool	find_commands(t_pipex *pipex);
+void	find_command(t_pipex *pipex, int i);
 bool	find_paths(t_pipex *pipex);
 void	open_files(t_pipex *pipex);
 bool	parse_input(t_pipex *pipex);
@@ -81,7 +81,5 @@ void	child(t_pipex pipex, int i, int input, int output);
 
 void	error_message(char *file);
 void	cmd_not_found(t_pipex *pipex, int i);
-void	permission_denied(char *file);
-void	no_such_file(char *file);
 
 #endif
