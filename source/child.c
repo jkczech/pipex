@@ -6,7 +6,7 @@
 /*   By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 16:41:26 by jkoupy            #+#    #+#             */
-/*   Updated: 2023/12/16 16:17:50 by jkoupy           ###   ########.fr       */
+/*   Updated: 2023/12/16 16:23:18 by jkoupy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,17 @@ void	redirect(t_pipex pipex, int input, int output)
 void	children(t_pipex pipex, int i)
 {
 	if (!pipex.cmds[i].found)
+	{
+		close_pipes(&pipex);
+		free_pipex(&pipex);
 		exit(1);
+	}
 	if (i == 0)
 		child(pipex, i, pipex.infile, pipex.pipes[i][1]);
 	else if (i != pipex.size - 1)
 		child(pipex, i, pipex.pipes[i - 1][0], pipex.pipes[i][1]);
 	else
 		child(pipex, i, pipex.pipes[i - 1][0], pipex.outfile);
-	exit(1);
 }
 
 //handle child processes, execute commands, else error message
@@ -54,7 +57,7 @@ void	child(t_pipex pipex, int i, int input, int output)
 	if (execve(pipex.cmds[i].path, pipex.cmds[i].args, pipex.envp) == -1)
 	{
 		free_pipex(&pipex);
-		error_message("inside function child");
+		error_message(NULL);
 	}
 	exit(1);
 }

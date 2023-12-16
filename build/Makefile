@@ -6,7 +6,7 @@
 #    By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/11 12:07:05 by jkoupy            #+#    #+#              #
-#    Updated: 2023/12/16 15:55:04 by jkoupy           ###   ########.fr        #
+#    Updated: 2023/12/16 16:23:51 by jkoupy           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -72,7 +72,7 @@ fclean: clean
 	@$(RM) $(NAME) $(BNAME)
 	@printf "$(RED)💥 ./$(NAME) \tremoved\n$(END)"
 
-#clean files other than 'Makefile' or 'pipex'
+#clean files other than 'Makefile' or 'pipex' or 'pipex_bonus'
 cleanf:
 	@printf "$(RED)💥 test files \tremoved\n$(END)"
 	@find . -type f ! -name 'Makefile' ! -name $(NAME) ! -name $(BNAME) -delete
