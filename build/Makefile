@@ -6,7 +6,7 @@
 #    By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/11 12:07:05 by jkoupy            #+#    #+#              #
-#    Updated: 2023/12/16 12:24:29 by jkoupy           ###   ########.fr        #
+#    Updated: 2023/12/16 15:55:04 by jkoupy           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,6 +41,8 @@ BOBJS = $(addprefix $(OBJ_DIR), $(BSRCS:.c=.o))
 all: $(LIBFT) $(NAME)
 
 bonus: $(LIBFT) $(BNAME)
+
+both: all bonus
 
 ../object/%.o: ../source/%.c 
 	@mkdir -p $(dir $@)
