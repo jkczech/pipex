@@ -6,7 +6,7 @@
 /*   By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 13:34:37 by jkoupy            #+#    #+#             */
-/*   Updated: 2023/12/15 14:49:44 by jkoupy           ###   ########.fr       */
+/*   Updated: 2023/12/16 12:40:06 by jkoupy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	main(int argc, char **argv, char **envp)
 		return (EXIT_FAILURE);
 	}
 	pipex_init(&pipex, argc, argv, envp);
-	if (!parse_input(&pipex, argv))
+	if (!parse_input(&pipex))
 		return (free_pipex(&pipex), EXIT_FAILURE);
 	if (!create_pipes(&pipex))
 		return (free_pipex(&pipex), error_message(NULL), EXIT_FAILURE);
