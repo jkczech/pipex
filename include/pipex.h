@@ -6,7 +6,7 @@
 /*   By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 14:27:19 by jkoupy            #+#    #+#             */
-/*   Updated: 2023/12/17 02:40:42 by jkoupy           ###   ########.fr       */
+/*   Updated: 2023/12/17 12:40:03 by jkoupy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,3 +70,5 @@ void	cmd_not_found(t_pipex *pipex, int i);
 void	open_here_doc(t_pipex *pipex);
 
 #endif
+
+//&& !(i == 0 && ft_strncmp(pipex->argv[1], "here_doc", 9) == 0)
