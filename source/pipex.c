@@ -6,7 +6,7 @@
 /*   By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 11:34:49 by jkoupy            #+#    #+#             */
-/*   Updated: 2023/12/16 13:39:58 by jkoupy           ###   ########.fr       */
+/*   Updated: 2023/12/17 12:43:11 by jkoupy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,7 @@ bool	pipex_init(t_pipex *pipex, int argc, char **argv, char **envp)
 	pipex->argv = argv;
 	pipex->envp = envp;
 	pipex->child_pids = NULL;
+	pipex->heredoc = false;
 	pipex->cmds = malloc(pipex->size * sizeof(t_cmd));
 	if (!pipex->cmds)
 		return (false);
