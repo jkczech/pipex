@@ -6,7 +6,7 @@
 #    By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/11 12:07:05 by jkoupy            #+#    #+#              #
-#    Updated: 2023/12/17 02:05:11 by jkoupy           ###   ########.fr        #
+#    Updated: 2023/12/17 02:47:09 by jkoupy           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,7 @@ LIBFT = 	../library/libft/build/libft.a
 GETNEXTLINE = 	../library/get_next_line/build/getnextline.a
 
 MSRCS = main.c free.c parse.c child.c error.c pipex.c
-BSRCS = main_bonus.c free.c parse.c child.c error.c pipex.c 
+BSRCS = main_bonus.c free.c parse.c child.c error.c pipex.c here_doc_bonus.c
 OBJ_DIR = ../object/
 MOBJS =  $(addprefix $(OBJ_DIR), $(MSRCS:.c=.o))
 BOBJS = $(addprefix $(OBJ_DIR), $(BSRCS:.c=.o))
@@ -41,7 +41,7 @@ BOBJS = $(addprefix $(OBJ_DIR), $(BSRCS:.c=.o))
 
 all: $(LIBFT) $(NAME)
 
-bonus: $(GETNEXTLINE) $(LIBFT) $(BNAME)
+bonus: $(LIBFT) $(GETNEXTLINE) $(BNAME)
 
 both: all bonus
 

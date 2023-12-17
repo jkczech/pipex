@@ -6,11 +6,38 @@
 /*   By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 13:34:37 by jkoupy            #+#    #+#             */
-/*   Updated: 2023/12/16 15:47:45 by jkoupy           ###   ########.fr       */
+/*   Updated: 2023/12/17 02:40:11 by jkoupy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pipex.h"
+
+//read all the commands, infile, outfile, opens fd's for files
+//return value: if any error false at first error, else true
+bool	parse_input(t_pipex *pipex)
+{
+	int	i;
+
+	if (!find_paths(pipex))
+		return (false);
+	if (ft_strncmp(pipex->argv[1], "here_doc", 9) == 0)
+		open_here_doc(pipex);
+	else
+		open_files(pipex);
+	i = 0;
+	while (i < pipex->size)
+	{
+		pipex->cmds[i].found = false;
+		pipex->cmds[i].args = ft_split(pipex->argv[i + 2], ' ');
+		if (!pipex->cmds[i].args)
+			return (false);
+		if (!(i == 0 && pipex->infile == -1)
+			&& !(i == pipex->size - 1 && pipex->outfile == -1))
+			find_command(pipex, i);
+		i++;
+	}
+	return (true);
+}
 
 //the difference from main.c is the argc check
 int	main(int argc, char **argv, char **envp)
