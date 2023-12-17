@@ -6,7 +6,7 @@
 /*   By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 13:55:44 by jkoupy            #+#    #+#             */
-/*   Updated: 2023/12/16 13:40:51 by jkoupy           ###   ########.fr       */
+/*   Updated: 2023/12/17 13:03:21 by jkoupy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ bool	free_pipex(t_pipex *pipex)
 		close(pipex->outfile);
 	if (pipex->child_pids)
 		free(pipex->child_pids);
+	if (pipex->heredoc)
+		unlink(".here_doc");
 	return (true);
 }
 
