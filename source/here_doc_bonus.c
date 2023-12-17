@@ -6,7 +6,7 @@
 /*   By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/17 00:51:53 by jkoupy            #+#    #+#             */
-/*   Updated: 2023/12/17 17:30:21 by jkoupy           ###   ########.fr       */
+/*   Updated: 2023/12/17 17:59:30 by jkoupy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	here_doc(t_pipex *pipex)
 		buf = get_next_line(0);
 		if (!buf)
 			exit(1);
-		if (ft_strlen(pipex->argv[2]) == ft_strlen(buf) - 1 &&
+		if (ft_strlen(pipex->argv[2]) == ft_strlen(buf) - 1 && \
 			ft_strncmp(pipex->argv[2], buf, ft_strlen(pipex->argv[2])) == 0)
 			break ;
 		write(pipex->infile, buf, ft_strlen(buf) - 1);
