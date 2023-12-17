@@ -6,7 +6,7 @@
 /*   By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 14:27:19 by jkoupy            #+#    #+#             */
-/*   Updated: 2023/12/16 16:17:21 by jkoupy           ###   ########.fr       */
+/*   Updated: 2023/12/17 02:26:02 by jkoupy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define PIPEX_H
 
 # include "../library/libft/include/libft.h"
+# include "../library/get_next_line/include/get_next_line.h"
 
 # include <fcntl.h>		//open, close, read, write
 # include <stdlib.h>	//malloc, free
