@@ -6,7 +6,7 @@
 /*   By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/17 00:51:53 by jkoupy            #+#    #+#             */
-/*   Updated: 2023/12/17 02:43:39 by jkoupy           ###   ########.fr       */
+/*   Updated: 2023/12/17 02:57:09 by jkoupy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	open_here_doc(t_pipex *pipex)
 			ft_putstr_fd("Error: infile undefined\n", 2);
 	}
 	pipex->outfile = open(pipex->argv[pipex->size + 2],
-			O_WRONLY | O_CREAT | O_TRUNC, 0777);
+			O_WRONLY | O_CREAT | O_APPEND, 0777);
 	if (pipex->outfile == -1)
 	{
 		if (access(pipex->argv[pipex->size + 2], W_OK) != 0)
