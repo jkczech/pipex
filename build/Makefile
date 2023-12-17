@@ -6,7 +6,7 @@
 #    By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/11 12:07:05 by jkoupy            #+#    #+#              #
-#    Updated: 2023/12/16 18:04:19 by jkoupy           ###   ########.fr        #
+#    Updated: 2023/12/17 02:05:11 by jkoupy           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,7 @@ CFLAGS = -Wall -Wextra -Werror
 RM = rm -rf
 
 LIBFT = 	../library/libft/build/libft.a
+GETNEXTLINE = 	../library/get_next_line/build/getnextline.a
 
 MSRCS = main.c free.c parse.c child.c error.c pipex.c
 BSRCS = main_bonus.c free.c parse.c child.c error.c pipex.c 
@@ -40,7 +41,7 @@ BOBJS = $(addprefix $(OBJ_DIR), $(BSRCS:.c=.o))
 
 all: $(LIBFT) $(NAME)
 
-bonus: $(LIBFT) $(BNAME)
+bonus: $(GETNEXTLINE) $(LIBFT) $(BNAME)
 
 both: all bonus
 
@@ -51,24 +52,30 @@ both: all bonus
 
 
 $(NAME):	$(LIBFT) $(MOBJS) 
-	@$(CC) $(MOBJS) $(CC_FLAGS)  $(LIBFT) -o $(NAME)
+	@$(CC) $(MOBJS) $(CC_FLAGS) $(LIBFT) -o $(NAME)
 	@printf "\r$(GREEN)🚀 ./$(NAME)      created (mandatory)        \n$(END)"
 
 $(BNAME): $(LIBFT) $(BOBJS)
-	@$(CC) $(BOBJS) $(CC_FLAGS) $(LIBFT) -o $(BNAME)
+	@$(CC) $(BOBJS) $(CC_FLAGS) $(LIBFT) $(GETNEXTLINE) -o $(BNAME)
 	@printf "\r$(GREEN)🚀 ./$(NAME)      created (bonus)            \n$(END)"
 
 $(LIBFT):
 	@printf "$(ORANGE)🔁 ./$(NAME)    compiling$(END)"
 	@make bonus -sC ../library/libft/build
 
+$(GETNEXTLINE):
+	@printf "$(ORANGE).$(END)"
+	@make -sC ../library/get_next_line/build
+
 clean:
 	@$(RM) $(OBJ_DIR)
 	@make clean -sC ../library/libft/build
+	@make clean -sC ../library/get_next_line/build
 	@printf "$(RED)💥 object files\tremoved\n$(END)"
 
 fclean: clean
 	@make fclean -sC ../library/libft/build
+	@make fclean -sC ../library/get_next_line/build
 	@$(RM) $(NAME) $(BNAME)
 	@printf "$(RED)💥 ./$(NAME) \tremoved\n$(END)"
 
