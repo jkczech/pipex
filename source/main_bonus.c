@@ -6,7 +6,7 @@
 /*   By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 13:34:37 by jkoupy            #+#    #+#             */
-/*   Updated: 2023/12/17 13:46:13 by jkoupy           ###   ########.fr       */
+/*   Updated: 2023/12/17 14:09:52 by jkoupy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,13 @@ bool	parse_input(t_pipex *pipex)
 	while (i < pipex->size)
 	{
 		pipex->cmds[i].found = false;
-		pipex->cmds[i].args = ft_split(pipex->argv[i + 2 + pipex->heredoc], ' ');
+		pipex->cmds[i].args = \
+			ft_split(pipex->argv[i + 2 + pipex->heredoc], ' ');
 		if (!pipex->cmds[i].args)
 			return (false);
 		if (!(i == 0 && pipex->infile == -1)
-			&& !(i == pipex->size - 1 && pipex->outfile == -1))
+			&& !(i == pipex->size - 1 && pipex->outfile == -1)
+			&& !(pipex->heredoc && i == pipex->size - 1))
 			find_command(pipex, i);
 		i++;
 	}
@@ -46,8 +48,11 @@ int	main(int argc, char **argv, char **envp)
 
 	if (!pipex_init(&pipex, argc, argv, envp))
 		return (free_pipex(&pipex), error_message(NULL), EXIT_FAILURE);
+	if (ft_strncmp(pipex.argv[1], "here_doc", 9) == 0
+		&& ft_strncmp(pipex.argv[0], "./pipex_bonus", 14) == 0)
+		pipex.heredoc = true;
 	if (argc < 5 + pipex.heredoc)
-	{ 
+	{
 		ft_putstr_fd("Error: Not enough arguments\n", 2);
 		return (free_pipex(&pipex), EXIT_FAILURE);
 	}

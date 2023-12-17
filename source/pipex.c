@@ -6,7 +6,7 @@
 /*   By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 11:34:49 by jkoupy            #+#    #+#             */
-/*   Updated: 2023/12/17 13:47:59 by jkoupy           ###   ########.fr       */
+/*   Updated: 2023/12/17 13:58:19 by jkoupy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,11 +107,7 @@ bool	pipex_init(t_pipex *pipex, int argc, char **argv, char **envp)
 	pipex->envp = envp;
 	pipex->child_pids = NULL;
 	pipex->exitcode = EXIT_SUCCESS;
-	if (ft_strncmp(pipex->argv[1], "here_doc", 9) == 0
-		&& ft_strncmp(pipex->argv[0], "./pipex_bonus", 14) == 0)
-		pipex->heredoc = true;
-	else
-		pipex->heredoc = false;
+	pipex->heredoc = false;
 	pipex->size = argc - 3 - pipex->heredoc;
 	pipex->cmds = malloc(pipex->size * sizeof(t_cmd));
 	if (!pipex->cmds)
