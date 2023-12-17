@@ -6,7 +6,7 @@
 /*   By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 11:34:49 by jkoupy            #+#    #+#             */
-/*   Updated: 2023/12/17 13:58:19 by jkoupy           ###   ########.fr       */
+/*   Updated: 2023/12/17 17:58:19 by jkoupy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ bool	wait_pids(t_pipex *pipex)
 	int	status;
 
 	i = 0;
+	status = 0;
 	while (i < pipex->size && pipex->child_pids[i] > 0)
 	{
 		waitpid(pipex->child_pids[i], &status, 0);
