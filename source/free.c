@@ -6,7 +6,7 @@
 /*   By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 13:55:44 by jkoupy            #+#    #+#             */
-/*   Updated: 2023/12/17 13:03:21 by jkoupy           ###   ########.fr       */
+/*   Updated: 2023/12/17 14:23:10 by jkoupy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ bool	close_pipes(t_pipex *pipex)
 	return (true);
 }
 
-//free pipex elements that are allocated, all cmd's, paths
-//closes infile and outfile
+//free allocated pipex elements, all cmds, paths
+//close infile and outfile, unlink .here_doc
 bool	free_pipex(t_pipex *pipex)
 {
 	int	i;
