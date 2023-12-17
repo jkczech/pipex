@@ -6,7 +6,7 @@
 /*   By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/17 02:34:44 by jkoupy            #+#    #+#             */
-/*   Updated: 2023/12/17 12:42:18 by jkoupy           ###   ########.fr       */
+/*   Updated: 2023/12/17 13:26:01 by jkoupy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,5 @@ typedef struct s_pipex
 	char	**envp;
 	int		*child_pids;
 	bool	heredoc;
+	int		exitcode;
 }	t_pipex;

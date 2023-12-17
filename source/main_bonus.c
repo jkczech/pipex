@@ -6,7 +6,7 @@
 /*   By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 13:34:37 by jkoupy            #+#    #+#             */
-/*   Updated: 2023/12/17 12:56:47 by jkoupy           ###   ########.fr       */
+/*   Updated: 2023/12/17 13:46:13 by jkoupy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,9 @@ bool	parse_input(t_pipex *pipex)
 	if (!find_paths(pipex))
 		return (false);
 	if (pipex->heredoc)
-	{
 		open_here_doc(pipex);
-	}
 	else
-	{
-		printf("here");
 		open_files(pipex);
-	}
 	i = 0;
 	while (i < pipex->size)
 	{
@@ -60,8 +55,8 @@ int	main(int argc, char **argv, char **envp)
 		return (free_pipex(&pipex), EXIT_FAILURE);
 	if (!create_pipes(&pipex))
 		return (free_pipex(&pipex), error_message(NULL), EXIT_FAILURE);
-	if (!execute(pipex))
-		return (free_pipex(&pipex), error_message(NULL), EXIT_FAILURE);
+	if (!execute(&pipex))
+		return (free_pipex(&pipex), error_message(NULL), pipex.exitcode);
 	free_pipex(&pipex);
-	return (EXIT_SUCCESS);
+	return (pipex.exitcode);
 }

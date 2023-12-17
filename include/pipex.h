@@ -6,7 +6,7 @@
 /*   By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 14:27:19 by jkoupy            #+#    #+#             */
-/*   Updated: 2023/12/17 12:40:03 by jkoupy           ###   ########.fr       */
+/*   Updated: 2023/12/17 13:41:05 by jkoupy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ bool	parse_input(t_pipex *pipex);
 //pipex.c
 
 bool	create_pipes(t_pipex *pipex);
-bool	wait_pids(t_pipex pipex);
-bool	execute(t_pipex pipex);
+bool	wait_pids(t_pipex *pipex);
+bool	execute(t_pipex *pipex);
 bool	allocate_pids(t_pipex *pipex);
 bool	pipex_init(t_pipex *pipex, int argc, char **argv, char **envp);
 
@@ -70,5 +70,3 @@ void	cmd_not_found(t_pipex *pipex, int i);
 void	open_here_doc(t_pipex *pipex);
 
 #endif
-
-//&& !(i == 0 && ft_strncmp(pipex->argv[1], "here_doc", 9) == 0)

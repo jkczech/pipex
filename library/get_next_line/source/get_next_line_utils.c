@@ -6,7 +6,7 @@
 /*   By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 11:41:36 by jkoupy            #+#    #+#             */
-/*   Updated: 2023/12/17 01:56:11 by jkoupy           ###   ########.fr       */
+/*   Updated: 2023/12/17 13:27:58 by jkoupy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,44 +88,3 @@ t_list	*ft_lstnew(void *content)
 	list->next = NULL;
 	return (list);
 }
-/*
-#include <stdio.h>
-
-void	print_nl(char *str)
-{
-	int	i;
-
-	i = 0;
-	if (!str)
-	{
-		printf("(null)");
-		return ;
-	}
-	printf("\"");
-	while (str[i])
-	{
-		if (str[i] == '\n')
-			printf("\\n");
-		else
-			printf("%c", str[i]);
-		i++;
-	}
-	printf("\"");
-}
-
-void	print_list(t_list *ll)
-{
-	int cnt;
-
-	cnt = 0;
-	if (!ll)
-		printf("\tempty list\n");
-	while (ll)
-	{
-		printf("\tNode %d: ", cnt++);
-		print_nl(ll->content);
-		printf("\n");
-		ll = ll->next;
-	}
-}
-*/
