@@ -6,7 +6,7 @@
 /*   By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 11:41:30 by jkoupy            #+#    #+#             */
-/*   Updated: 2023/10/06 14:34:40 by jkoupy           ###   ########.fr       */
+/*   Updated: 2023/12/17 02:46:39 by jkoupy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,7 @@
 //malloc, free
 # include <stdlib.h>
 
-typedef struct s_list
-{
-	char			*content;
-	struct s_list	*next;
-}	t_list;
+#include "t_list.h"
 
 //get_next_line.c
 void	free_line(t_list **llist);
