@@ -6,7 +6,7 @@
 /*   By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 14:27:19 by jkoupy            #+#    #+#             */
-/*   Updated: 2023/12/17 02:26:02 by jkoupy           ###   ########.fr       */
+/*   Updated: 2023/12/17 02:34:34 by jkoupy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,25 +26,7 @@
 # include <errno.h>		//errno
 # include <error.h>
 
-typedef struct s_cmd
-{
-	bool	found;
-	char	*path;
-	char	**args;
-}	t_cmd;
-
-typedef struct s_pipex
-{
-	int		size;
-	int		infile;
-	int		outfile;
-	t_cmd	*cmds;
-	int		**pipes;
-	char	**paths;
-	char	**argv;
-	char	**envp;
-	int		*child_pids;
-}	t_pipex;
+# include "structures.h"
 
 //main.c or main_bonus.c
 
@@ -82,5 +64,9 @@ void	child(t_pipex pipex, int i, int input, int output);
 
 void	error_message(char *file);
 void	cmd_not_found(t_pipex *pipex, int i);
+
+//here_doc_bonus.c
+
+
 
 #endif
