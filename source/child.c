@@ -6,7 +6,7 @@
 /*   By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 16:41:26 by jkoupy            #+#    #+#             */
-/*   Updated: 2023/12/17 14:20:23 by jkoupy           ###   ########.fr       */
+/*   Updated: 2023/12/17 14:24:04 by jkoupy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ void	children(t_pipex pipex, int i)
 		free_pipex(&pipex);
 		exit(1);
 	}
-	ft_putstr_fd(pipex.cmds[i].args[0], 2);
 	if (i == 0)
 		child(pipex, i, pipex.infile, pipex.pipes[i][1]);
 	else if (i != pipex.size - 1 - pipex.heredoc)
