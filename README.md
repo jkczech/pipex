@@ -3,7 +3,8 @@
 
 A project from 42 Vienna focusing on process, pipe and file management.
 
-This project is about handling pipes.
+This project is about **pipes**.
+
 ## Requirements
 |||
 |----------|----------|
@@ -11,7 +12,7 @@ This project is about handling pipes.
 | Turn in files | Makefile, *.h, *.c |
 |Makefile | NAME, all, clean, fclean, re |
 |Arguments | file1 cmd1 cmd2 file2 |
-|External functs | open, close, read, write, malloc, free, perror, <br>strerror, access, dup, dup2, execve, exit, fork,<br>pipe, unlink, wait, waitpid, ft_printf |
+|External functs | open, close, read, write, malloc, free, perror, <br>strerror, access, dup, dup2, execve, exit, fork,<br>pipe, unlink, wait, waitpid, ft_printf *(prev. project)* |
 |Libft authorized | Yes
 
 
@@ -82,3 +83,4 @@ I submitted the project 3 times and failed in some of these things
 - **valgrind**
 - **scan-build-12 make re**
 - possibly **funcheck**
+- **pipex-tester**
