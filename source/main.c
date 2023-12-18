@@ -6,36 +6,13 @@
 /*   By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 14:26:55 by jkoupy            #+#    #+#             */
-/*   Updated: 2023/12/17 13:45:49 by jkoupy           ###   ########.fr       */
+/*   Updated: 2023/12/18 05:38:21 by jkoupy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pipex.h"
 
-//read all the commands, infile, outfile, opens fd's for files
-//return value: if any error false at first error, else true
-bool	parse_input(t_pipex *pipex)
-{
-	int	i;
-
-	if (!find_paths(pipex))
-		return (false);
-	open_files(pipex);
-	i = 0;
-	while (i < pipex->size)
-	{
-		pipex->cmds[i].found = false;
-		pipex->cmds[i].args = ft_split(pipex->argv[i + 2], ' ');
-		if (!pipex->cmds[i].args)
-			return (false);
-		if (!(i == 0 && pipex->infile == -1)
-			&& !(i == pipex->size - 1 && pipex->outfile == -1))
-			find_command(pipex, i);
-		i++;
-	}
-	return (true);
-}
-
+//the difference from main_bonus.c is the argc check
 int	main(int argc, char **argv, char **envp)
 {
 	t_pipex	pipex;
@@ -55,4 +32,43 @@ int	main(int argc, char **argv, char **envp)
 		return (free_pipex(&pipex), error_message(NULL), pipex.exitcode);
 	free_pipex(&pipex);
 	return (pipex.exitcode);
+}
+
+//initialize pipex structure
+bool	pipex_init(t_pipex *pipex, int argc, char **argv, char **envp)
+{
+	pipex->paths = NULL;
+	pipex->infile = -1;
+	pipex->outfile = -1;
+	pipex->cmds = NULL;
+	pipex->pipes = NULL;
+	pipex->argv = argv;
+	pipex->envp = envp;
+	pipex->child_pids = NULL;
+	pipex->exitcode = EXIT_SUCCESS;
+	pipex->heredoc = false;
+	pipex->size = argc - 3;
+	if (!init_cmds(pipex))
+		return (false);
+	return (true);
+}
+
+//help pipex init
+//allocate memory for commands
+bool	init_cmds(t_pipex *pipex)
+{
+	int	i;
+
+	pipex->cmds = malloc(pipex->size * sizeof(t_cmd));
+	if (!pipex->cmds)
+		return (false);
+	i = 0;
+	while (i < pipex->size)
+	{
+		pipex->cmds[i].args = NULL;
+		pipex->cmds[i].found = false;
+		pipex->cmds[i].path = NULL;
+		i++;
+	}
+	return (true);
 }

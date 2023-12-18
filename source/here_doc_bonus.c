@@ -6,7 +6,7 @@
 /*   By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/17 00:51:53 by jkoupy            #+#    #+#             */
-/*   Updated: 2023/12/17 17:59:30 by jkoupy           ###   ########.fr       */
+/*   Updated: 2023/12/18 05:21:19 by jkoupy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	open_here_doc(t_pipex *pipex)
 		unlink(".here_doc");
 		error_message(NULL);
 	}
-	pipex->outfile = open(pipex->argv[pipex->size + 2],
+	pipex->outfile = open(pipex->argv[pipex->size + 3],
 			O_WRONLY | O_CREAT | O_APPEND, 0777);
 	if (pipex->outfile == -1)
 	{

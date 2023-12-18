@@ -6,7 +6,7 @@
 /*   By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 13:23:11 by jkoupy            #+#    #+#             */
-/*   Updated: 2023/12/17 17:47:27 by jkoupy           ###   ########.fr       */
+/*   Updated: 2023/12/18 05:38:54 by jkoupy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ void	find_command(t_pipex *pipex, int i)
 		&& is_command(pipex, ft_strdup(pipex->cmds[i].args[0]), i))
 		return ;
 	j = 0;
+	if (!pipex->paths)
+		return (cmd_not_found(pipex, i));
 	while (pipex->paths[j])
 	{
 		command = ft_strjoin3(pipex->paths[j],
@@ -55,26 +57,20 @@ void	find_command(t_pipex *pipex, int i)
 }
 
 //find PATH in environment variables and saves it into pipex
-bool	find_paths(t_pipex *pipex)
+void	find_paths(t_pipex *pipex)
 {
 	int	i;
 
 	i = 0;
 	if (!pipex->envp)
-		return (false);
-	while (pipex->envp[i]
-		&& ft_strncmp(pipex->envp[i], "PATH", 4) != 0)
+		return ;
+	while (pipex->envp[i] && ft_strncmp(pipex->envp[i], "PATH", 4) != 0)
 		i++;
 	if (pipex->envp[i] && ft_strncmp(pipex->envp[i], "PATH", 4) == 0)
 		pipex->paths = ft_split(pipex->envp[i] + 5, ':');
-	else
-		ft_putstr_fd("pipex: path not found\n", 2);
-	if (!pipex->paths)
-		return (false);
-	return (true);
 }
 
-//opens infile and outfile, shows errors respectively
+//open infile and outfile, show errors respectively
 void	open_files(t_pipex *pipex)
 {
 	pipex->infile = open(pipex->argv[1], O_RDONLY);
@@ -96,4 +92,32 @@ void	open_files(t_pipex *pipex)
 		else
 			ft_putstr_fd("Error: outfile undefined\n", 2);
 	}
+}
+
+//read all the commands, infile, outfile, opens fd's for files
+//return value: if any error false at first error, else true
+bool	parse_input(t_pipex *pipex)
+{
+	int	i;
+
+	find_paths(pipex);
+	if (pipex->heredoc)
+		open_here_doc(pipex);
+	else
+		open_files(pipex);
+	i = 0;
+	while (i < pipex->size)
+	{
+		pipex->cmds[i].found = false;
+		pipex->cmds[i].args = \
+			ft_split(pipex->argv[i + 2 + pipex->heredoc], ' ');
+		if (!pipex->cmds[i].args)
+			return (false);
+		if (!(i == 0 && pipex->infile == -1)
+			&& !(i == pipex->size - 1 && pipex->outfile == -1)
+			&& !(pipex->heredoc && i == pipex->size - 1))
+			find_command(pipex, i);
+		i++;
+	}
+	return (true);
 }

@@ -6,7 +6,7 @@
 /*   By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 14:27:19 by jkoupy            #+#    #+#             */
-/*   Updated: 2023/12/17 18:08:51 by jkoupy           ###   ########.fr       */
+/*   Updated: 2023/12/18 05:37:58 by jkoupy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,15 +52,17 @@ void	here_doc(t_pipex *pipex);
 
 //main.c or main_bonus.c
 
-bool	parse_input(t_pipex *pipex);
 int		main(int argc, char **argv, char **envp);
+bool	pipex_init(t_pipex *pipex, int argc, char **argv, char **envp);
+bool	init_cmds(t_pipex *pipex);
 
 //parse.c
 
 bool	is_command(t_pipex *pipex, char *command, int i);
 void	find_command(t_pipex *pipex, int i);
-bool	find_paths(t_pipex *pipex);
+void	find_paths(t_pipex *pipex);
 void	open_files(t_pipex *pipex);
+bool	parse_input(t_pipex *pipex);
 
 //pipex.c
 
@@ -68,6 +70,5 @@ bool	create_pipes(t_pipex *pipex);
 bool	wait_pids(t_pipex *pipex);
 bool	allocate_pids(t_pipex *pipex);
 bool	execute(t_pipex *pipex);
-bool	pipex_init(t_pipex *pipex, int argc, char **argv, char **envp);
 
 #endif

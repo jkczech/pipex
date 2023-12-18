@@ -6,7 +6,7 @@
 /*   By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 11:34:49 by jkoupy            #+#    #+#             */
-/*   Updated: 2023/12/17 17:58:19 by jkoupy           ###   ########.fr       */
+/*   Updated: 2023/12/18 05:37:17 by jkoupy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,35 +91,4 @@ bool	execute(t_pipex *pipex)
 	}
 	close_pipes(pipex);
 	return (wait_pids(pipex), true);
-}
-
-//initialize the whole structure
-//allocate memory for commands
-bool	pipex_init(t_pipex *pipex, int argc, char **argv, char **envp)
-{
-	int	i;
-
-	pipex->paths = NULL;
-	pipex->infile = -1;
-	pipex->outfile = -1;
-	pipex->cmds = NULL;
-	pipex->pipes = NULL;
-	pipex->argv = argv;
-	pipex->envp = envp;
-	pipex->child_pids = NULL;
-	pipex->exitcode = EXIT_SUCCESS;
-	pipex->heredoc = false;
-	pipex->size = argc - 3 - pipex->heredoc;
-	pipex->cmds = malloc(pipex->size * sizeof(t_cmd));
-	if (!pipex->cmds)
-		return (false);
-	i = 0;
-	while (i < pipex->size)
-	{
-		pipex->cmds[i].args = NULL;
-		pipex->cmds[i].found = false;
-		pipex->cmds[i].path = NULL;
-		i++;
-	}
-	return (true);
 }

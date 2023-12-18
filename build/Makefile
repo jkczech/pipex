@@ -6,7 +6,7 @@
 #    By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/11 12:07:05 by jkoupy            #+#    #+#              #
-#    Updated: 2023/12/17 02:47:09 by jkoupy           ###   ########.fr        #
+#    Updated: 2023/12/18 03:19:29 by jkoupy           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ NAME = pipex
 BNAME = pipex_bonus
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 #DEPFLAGS =-MT $@ -MMD -MP -MF $(OBJ_DIR)/$*.d
 RM = rm -rf
 
