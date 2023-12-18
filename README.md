@@ -69,10 +69,12 @@ I submitted the project 3 times and failed in these things
 #### Mandatory
 - **empty path** - `unset PATH` - code can't segfault after unsetting path
 - **NULL parameters** - `./pipex in cat "" out` - should be handled correctly
-- 
+- **error messages** - correct error messages - no file, no permissions, cmd not found
+- **nonsense input** - `./pipex a a a a` or `./pipex a b c d` - especially for handling the error messages correctly
 #### Bonus
 - **heredoc limiter** - if you end your heredoc file with `LIMITERLIMITER` it shouldn't end
 - **middle command, no permissions** - `./pipex infile cat "rm -f file" cat outfile` - the `rm` should be executed even if `infile` and `outfile` don't have the correct permissions
 #### Things you should also test
 - **protection** - functions like `ft_split`, `ft_strdup`, `execve`, `dup2` should be protected, and after some of them you need to exit the program properly
 - **random file** - `./pipex /dev/random cat "head -1" outfile`
+- **norminette**
