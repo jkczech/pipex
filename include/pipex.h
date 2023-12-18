@@ -6,7 +6,7 @@
 /*   By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 14:27:19 by jkoupy            #+#    #+#             */
-/*   Updated: 2023/12/18 06:08:06 by jkoupy           ###   ########.fr       */
+/*   Updated: 2023/12/18 08:16:37 by jkoupy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,13 @@
 
 # include "libraries.h"
 # include "structures.h"
+
+//error messages
+
+# define ERR_ARG_1 	"Error: Wrong number of arguments\n"
+# define ERR_ARG_2 	"Error: Not enough arguments\n"
+# define ERR_IN 	"Error: infile undefined\n"
+# define ERR_OUT	"Error: outfile undefined\n"
 
 //child.c
 
