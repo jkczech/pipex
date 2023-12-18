@@ -24,7 +24,7 @@ The project must comply with the following rules:
 
 ## Mandatory part
 
-Create program by `make` in the `build` folder.
+Create a program by `make` in the `build` folder.
 The program is executed as follows:
 
 `$> ./pipex file1 cmd1 cmd2 file2`
@@ -40,7 +40,7 @@ It behaves the same as the shell command below:
 
 ## Bonus part
 
-Create program by `make bonus` in the `build` folder.
+Create a program by `make bonus` in the `build` folder.
 ### Handle multiple pipes
 The program is executed as follows:
 
