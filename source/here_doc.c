@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   here_doc_bonus.c                                   :+:      :+:    :+:   */
+/*   here_doc.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/17 00:51:53 by jkoupy            #+#    #+#             */
-/*   Updated: 2023/12/18 05:21:19 by jkoupy           ###   ########.fr       */
+/*   Updated: 2023/12/18 05:53:38 by jkoupy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	here_doc(t_pipex *pipex)
 	while (1)
 	{
 		write(1, "pipex heredoc> ", 15);
-		buf = get_next_line(0);
+		buf = get_next_line(STDIN_FILENO);
 		if (!buf)
 			exit(1);
 		if (ft_strlen(pipex->argv[2]) == ft_strlen(buf) - 1 && \
