@@ -6,7 +6,7 @@
 #    By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/11 12:07:05 by jkoupy            #+#    #+#              #
-#    Updated: 2023/12/18 05:57:10 by jkoupy           ###   ########.fr        #
+#    Updated: 2023/12/18 06:13:50 by jkoupy           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,14 +52,14 @@ both: all bonus
 
 $(NAME):	$(LIBFT) $(MOBJS) 
 	@$(CC) $(MOBJS) $(CC_FLAGS) $(LIBFT) $(GETNEXTLINE) -o $(NAME)
-	@printf "\r$(GREEN)🚀 ./$(NAME)      created (mandatory)        \n$(END)"
+	@printf "\r$(GREEN)🚀 ./$(NAME)       created              \n$(END)"
 
 $(BNAME): $(LIBFT) $(BOBJS)
 	@$(CC) $(BOBJS) $(CC_FLAGS) $(LIBFT) $(GETNEXTLINE) -o $(BNAME)
-	@printf "\r$(GREEN)🚀 ./$(NAME)      created (bonus)            \n$(END)"
+	@printf "\r$(GREEN)🚀 ./$(BNAME) created                    \n$(END)"
 
 $(LIBFT):
-	@printf "$(ORANGE)🔁 ./$(NAME)    compiling$(END)"
+	@printf "$(ORANGE)🔁 ./$(NAME) \t compiling$(END)"
 	@make bonus -sC ../library/libft/build
 
 $(GETNEXTLINE):
@@ -70,22 +70,22 @@ clean:
 	@$(RM) $(OBJ_DIR)
 	@make clean -sC ../library/libft/build
 	@make clean -sC ../library/get_next_line/build
-	@printf "$(RED)💥 object files\tremoved\n$(END)"
+	@printf "$(RED)💥 object files\t removed\n$(END)"
 
 fclean: clean
 	@make fclean -sC ../library/libft/build
 	@make fclean -sC ../library/get_next_line/build
 	@$(RM) $(NAME) $(BNAME)
-	@printf "$(RED)💥 ./$(NAME) \tremoved\n$(END)"
+	@printf "$(RED)💥 ./$(NAME) \t removed\n$(END)"
 
 cleanf:
-	@printf "$(RED)💥 test files \tremoved\n$(END)"
+	@printf "$(RED)💥 test files \t removed\n$(END)"
 	@find . -type f ! -name 'Makefile' ! -name $(NAME) ! -name $(BNAME) -delete
 
 re: _rebuild fclean all
 
 _rebuild:
-	@printf "$(ORANGE)🚧 ./$(NAME)\trebuild\n$(END)"
+	@printf "$(ORANGE)🚧 ./$(NAME)\t rebuild\n$(END)"
 
 nothing:
 	@printf "💩$(BROWN) made $(RED)n$(ORANGE)o$(YELLOW)t$(GREEN)h$(BLUE)i$(INDIGO)n$(VIOLET)g\n$(END)"
