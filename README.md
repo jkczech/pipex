@@ -90,3 +90,11 @@ I submitted the project 3 times and failed in some of these things
 - **scan-build-12 make re**
 - possibly **funcheck**
 - **pipex-tester**
+
+
+## © Copyright
+All of the code belongs to me (@jkczech).
+
+The project idea and the requirements belong to 42 Vienna / 42 Network.
+
+If sharing the project is not allowed, let me know, and I will take it down.
