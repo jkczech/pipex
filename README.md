@@ -78,3 +78,5 @@ I submitted the project 3 times and failed in these things
 - **protection** - functions like `ft_split`, `ft_strdup`, `execve`, `dup2` should be protected, and after some of them you need to exit the program properly
 - **random file** - `./pipex /dev/random cat "head -1" outfile`
 - **norminette**
+- **valgrind**
+- **`scan-build-12 make re`**
