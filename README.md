@@ -71,6 +71,7 @@ I submitted the project 3 times and failed in these things
 - **NULL parameters** - `./pipex in cat "" out` - should be handled correctly
 - **error messages** - correct error messages - no file, no permissions, cmd not found
 - **nonsense input** - `./pipex a a a a` or `./pipex a b c d` - especially for handling the error messages correctly
+- **Makefile** - all makefile targets should work on their own without failing
 #### Bonus
 - **heredoc limiter** - if you end your heredoc file with `LIMITERLIMITER` it shouldn't end
 - **middle command, no permissions** - `./pipex infile cat "rm -f file" cat outfile` - the `rm` should be executed even if `infile` and `outfile` don't have the correct permissions
@@ -79,4 +80,5 @@ I submitted the project 3 times and failed in these things
 - **random file** - `./pipex /dev/random cat "head -1" outfile`
 - **norminette**
 - **valgrind**
-- **`scan-build-12 make re`**
+- **scan-build-12 make re**
+- possibly **funcheck**
