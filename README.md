@@ -65,7 +65,7 @@ It takes at least 4 arguments:
 - `file` output file
 
 ## Testing, evaluating
-I submitted the project 3 times and failed in these things
+I submitted the project 3 times and failed in some of these things
 #### Mandatory
 - **empty path** - `unset PATH` - code can't segfault after unsetting path
 - **NULL parameters** - `./pipex in cat "" out` - should be handled correctly
