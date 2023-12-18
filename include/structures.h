@@ -6,9 +6,12 @@
 /*   By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/17 02:34:44 by jkoupy            #+#    #+#             */
-/*   Updated: 2023/12/17 13:26:01 by jkoupy           ###   ########.fr       */
+/*   Updated: 2023/12/18 06:08:50 by jkoupy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#ifndef STRUCTURES_H
+# define STRUCTURES_H
 
 typedef struct s_cmd
 {
@@ -31,3 +34,5 @@ typedef struct s_pipex
 	bool	heredoc;
 	int		exitcode;
 }	t_pipex;
+
+#endif
