@@ -4,6 +4,7 @@
 A project from 42 Vienna focusing on process, pipe and file management.
 
 This project is about **pipes**.
+![Pipe](https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fclipart-library.com%2Fimage_gallery%2F266597.png&f=1&nofb=1&ipt=4aa21f4b81e90ebae456d605913ea37b1f998f2294fd89f4c2b3447b89116176&ipo=images)
 
 ## Requirements
 |||
@@ -16,8 +17,7 @@ This project is about **pipes**.
 |Libft authorized | Yes
 
 The project must comply with the following rules:
-- You have to turn in a Makefile which will compile your source files. It must not
-relink.
+- You have to turn in a Makefile which will compile your source files. It must not relink.
 - You have to handle errors thoroughly. In no way your program should quit unexpectedly (segmentation fault, bus error, double free, and so forth).
 - Your program mustn’t have memory leaks.
 - If you have any doubt, handle the errors like the shell command: `$> < file1 cmd1 | cmd2 > file2`
