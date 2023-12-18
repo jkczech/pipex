@@ -6,7 +6,7 @@
 /*   By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 11:34:49 by jkoupy            #+#    #+#             */
-/*   Updated: 2023/12/22 21:12:49 by jkoupy           ###   ########.fr       */
+/*   Updated: 2024/01/15 11:56:35 by jkoupy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,11 @@ bool	wait_pids(t_pipex *pipex)
 		i++;
 	}
 	if (WIFEXITED(status))
+	{
 		pipex->exitcode = WEXITSTATUS(status);
+		if (!pipex->cmds[i - 1].found)
+			pipex->exitcode = 127;
+	}
 	return (true);
 }
 
