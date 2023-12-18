@@ -15,6 +15,12 @@ This project is about **pipes**.
 |External functs | open, close, read, write, malloc, free, perror, <br>strerror, access, dup, dup2, execve, exit, fork,<br>pipe, unlink, wait, waitpid, ft_printf *(prev. project)* |
 |Libft authorized | Yes
 
+The project must comply with the following rules:
+- You have to turn in a Makefile which will compile your source files. It must not
+relink.
+- You have to handle errors thoroughly. In no way your program should quit unexpectedly (segmentation fault, bus error, double free, and so forth).
+- Your program mustn’t have memory leaks.
+- If you have any doubt, handle the errors like the shell command: `$> < file1 cmd1 | cmd2 > file2`
 
 ## Mandatory part
 
