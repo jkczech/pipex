@@ -85,12 +85,12 @@ I submitted the project four times and failed in some of these things
 - **Makefile** - all makefile targets should work on their own without failing
 #### Bonus
 - **heredoc limiter** - if you end your heredoc file with `LIMITERLIMITER` it shouldn't end
-- **middle command, no permissions** - `./pipex infile cat "rm -f file" cat outfile` - the `rm` should be executed even if `infile` and `outfile` don't have the correct permissions
+- **middle command, no permissions** - `./pipex infile cat "rm -f file" cat outfile` the `rm` should be executed even if `infile` and `outfile` don't have the correct permissions
 #### Things you should also test
 - **protection** - functions like `ft_split`, `ft_strdup`, `execve`, and `dup2` should be protected, and after some of them, you need to exit the program properly
 - **random file** - `./pipex /dev/random cat "head -1" outfile`
 - **norminette**
-- **valgrind** - make sure to use flags too - `--track-fds=all --trace-children=yes` - at the end of the execution, only three std fds are allowed to be open (be aware that in VS Code, there are by default some extra fds open therefore it's better to test this in a shell outside of VS Code)
+- **valgrind** - make sure to use flags too especially `--track-fds=all --trace-children=yes`, at the end of the execution, only three std fds are allowed to be open (be aware that in VS Code, there are by default some extra fds open therefore it's better to test this in a shell outside of VS Code)
 - **scan-build-12 make re**
 - possibly **funcheck**
 - **pipex-tester**
@@ -98,5 +98,7 @@ I submitted the project four times and failed in some of these things
 
 ## © Copyright
 All of the code belongs to me (@jkczech).
+
 The project idea and the requirements belong to 42 Vienna / 42 Network.
+
 If sharing this repository is against the rules of the 42 Network, please let me know, and I will take it down.
