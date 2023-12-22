@@ -6,7 +6,7 @@
 /*   By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 11:34:49 by jkoupy            #+#    #+#             */
-/*   Updated: 2023/12/18 05:37:17 by jkoupy           ###   ########.fr       */
+/*   Updated: 2023/12/22 21:12:49 by jkoupy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,9 +86,10 @@ bool	execute(t_pipex *pipex)
 		else if (pid > 0)
 			pipex->child_pids[i] = pid;
 		else
-			return (close_pipes(pipex), false);
+			return (close_all_fds(pipex), false);
 		i++;
 	}
-	close_pipes(pipex);
-	return (wait_pids(pipex), true);
+	close_all_fds(pipex);
+	wait_pids(pipex);
+	return (true);
 }

@@ -6,7 +6,7 @@
 /*   By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 14:27:19 by jkoupy            #+#    #+#             */
-/*   Updated: 2023/12/18 08:16:37 by jkoupy           ###   ########.fr       */
+/*   Updated: 2023/12/21 21:14:47 by jkoupy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	cmd_not_found(t_pipex *pipex, int i);
 
 //free.c
 
-bool	close_pipes(t_pipex *pipex);
+bool	close_all_fds(t_pipex *pipex);
 bool	free_pipex(t_pipex *pipex);
 bool	free_array(char **array);
 

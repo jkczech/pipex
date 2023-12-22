@@ -6,14 +6,15 @@
 /*   By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 13:55:44 by jkoupy            #+#    #+#             */
-/*   Updated: 2023/12/17 14:23:10 by jkoupy           ###   ########.fr       */
+/*   Updated: 2023/12/21 21:15:05 by jkoupy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pipex.h"
 
 //close all the pipes created, free pipes, and free the pipe array
-bool	close_pipes(t_pipex *pipex)
+//also close infile and outfile
+bool	close_all_fds(t_pipex *pipex)
 {
 	int	i;
 
@@ -29,6 +30,10 @@ bool	close_pipes(t_pipex *pipex)
 		i++;
 	}
 	free(pipex->pipes);
+	if (pipex->infile != -1)
+		close(pipex->infile);
+	if (pipex->outfile != -1)
+		close(pipex->outfile);
 	return (true);
 }
 
