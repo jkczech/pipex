@@ -6,7 +6,7 @@
 /*   By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 13:23:11 by jkoupy            #+#    #+#             */
-/*   Updated: 2023/12/22 21:14:26 by jkoupy           ###   ########.fr       */
+/*   Updated: 2023/12/23 19:13:29 by jkoupy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,8 +112,7 @@ bool	parse_input(t_pipex *pipex)
 		if (!pipex->cmds[i].args)
 			return (false);
 		if (!(i == 0 && pipex->infile == -1)
-			&& !(i == pipex->size - 1 && pipex->outfile == -1)
-			&& !(pipex->heredoc && i == pipex->size - 1))
+			&& !(i == pipex->size - 1 && pipex->outfile == -1))
 			find_command(pipex, i);
 		i++;
 	}

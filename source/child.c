@@ -6,7 +6,7 @@
 /*   By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 16:41:26 by jkoupy            #+#    #+#             */
-/*   Updated: 2023/12/21 21:15:49 by jkoupy           ###   ########.fr       */
+/*   Updated: 2023/12/23 19:11:49 by jkoupy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	children(t_pipex pipex, int i)
 	}
 	if (i == 0)
 		child(pipex, i, pipex.infile, pipex.pipes[i][1]);
-	else if (i != pipex.size - 1 - pipex.heredoc)
+	else if (i != pipex.size - 1)
 		child(pipex, i, pipex.pipes[i - 1][0], pipex.pipes[i][1]);
 	else
 		child(pipex, i, pipex.pipes[i - 1][0], pipex.outfile);
