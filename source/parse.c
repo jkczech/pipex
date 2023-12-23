@@ -6,7 +6,7 @@
 /*   By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 13:23:11 by jkoupy            #+#    #+#             */
-/*   Updated: 2023/12/18 08:12:37 by jkoupy           ###   ########.fr       */
+/*   Updated: 2023/12/22 21:14:26 by jkoupy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,6 @@ void	find_command(t_pipex *pipex, int i)
 	{
 		command = ft_strjoin3(pipex->paths[j],
 				"/", pipex->cmds[i].args[0]);
-		if (!command)
-			continue ;
 		if (is_command(pipex, command, i))
 			break ;
 		j++;
