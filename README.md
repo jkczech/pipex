@@ -7,7 +7,7 @@ This project is about **pipes**.
 
 Following information and the code in this repository is made for inspiration and help for students working on this project. 
 
-*If you copy any part of the code, you only cheat yourself because you will learn nothing.*
+*If you copy any part of the code, you only cheat yourself because you will learn nothing. Get just inspired instead.*
 ![Pipe](https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fclipart-library.com%2Fimage_gallery%2F266597.png&f=1&nofb=1&ipt=4aa21f4b81e90ebae456d605913ea37b1f998f2294fd89f4c2b3447b89116176&ipo=images)
 
 ## Requirements
