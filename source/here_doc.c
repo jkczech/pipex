@@ -6,7 +6,7 @@
 /*   By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/17 00:51:53 by jkoupy            #+#    #+#             */
-/*   Updated: 2024/01/15 13:24:44 by jkoupy           ###   ########.fr       */
+/*   Updated: 2024/01/15 13:29:39 by jkoupy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,14 @@ void	here_doc(t_pipex *pipex)
 		write(1, "pipex heredoc> ", 15);
 		buf = get_next_line(STDIN_FILENO);
 		if (buf == NULL || *buf == '\0')
-        {
-            write(1, "\n", 1); 
-			write(1, "pipex: warning - file delimited by end-of-file (wanted \"", 56);
+		{
+			write(1, "\n", 1);
+			write(1, "pipex: warning - file delimited by end-of-file ", 47);
+			write(1, "(wanted \"", 9);
 			write(1, pipex->argv[2], ft_strlen(pipex->argv[2]));
 			write(1, "\")\n", 3);
-            break;
-        }
+			break ;
+		}
 		if (ft_strlen(pipex->argv[2]) == ft_strlen(buf) - 1 && \
 			ft_strncmp(pipex->argv[2], buf, ft_strlen(pipex->argv[2])) == 0)
 			break ;
