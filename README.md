@@ -85,6 +85,7 @@ I submitted the project four times and failed in some of these things
 - **Makefile** - all makefile targets should work on their own without failing
 #### Bonus
 - **heredoc limiter** - if you end your heredoc file with `LIMITERLIMITER` it shouldn't end
+- **CTRL + D** - EOF ending the heredoc instead of the `LIMITER`
 - **middle command, no permissions** - `./pipex infile cat "rm -f file" cat outfile` the `rm` should be executed even if `infile` and `outfile` don't have the correct permissions
 #### Things you should also test
 - **protection** - functions like `ft_split`, `ft_strdup`, `execve`, and `dup2` should be protected, and after some of them, you need to exit the program properly
