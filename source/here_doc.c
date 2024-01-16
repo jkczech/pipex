@@ -6,13 +6,14 @@
 /*   By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/17 00:51:53 by jkoupy            #+#    #+#             */
-/*   Updated: 2024/01/15 13:29:39 by jkoupy           ###   ########.fr       */
+/*   Updated: 2024/01/15 13:36:18 by jkoupy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/pipex.h"
 
 //use get_next_line to read here_doc from command line
+//ending with eof will result in same message as in bash
 void	here_doc(t_pipex *pipex)
 {
 	char	*buf;
