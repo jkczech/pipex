@@ -83,10 +83,13 @@ I submitted the project four times and failed in some of these things
 - **error messages** - correct error messages - no file, no permissions, cmd not found
 - **nonsense input** - `./pipex a a a a` or `./pipex a b c d` - especially for handling the error messages correctly
 - **Makefile** - all makefile targets should work on their own without failing
+
 #### Bonus
 - **heredoc limiter** - if you end your heredoc file with `LIMITERLIMITER` it shouldn't end
 - **CTRL + D** - EOF ending the heredoc instead of the `LIMITER`
 - **middle command, no permissions** - `./pipex infile cat "rm -f file" cat outfile` the `rm` should be executed even if `infile` and `outfile` don't have the correct permissions
+- **exitcode** - differs outfile has no permissions (1), last command doesn't exist (127), correct last process and outfile (0), the way to acces exitcode is `echo $?` after execution of the program (not sure if exitcode handling is necessary here but some evaluators check that and it will be required in minishell)
+
 #### Things you should also test
 - **protection** - functions like `ft_split`, `ft_strdup`, `execve`, and `dup2` should be protected, and after some of them, you need to exit the program properly
 - **random file** - `./pipex /dev/random cat "head -1" outfile`
