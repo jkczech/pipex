@@ -91,7 +91,7 @@ I submitted the project four times and failed in some of these things
 - **exitcode** - differs outfile has no permissions (1), last command doesn't exist (127), correct last process and outfile (0), the way to acces exitcode is `echo $?` after execution of the program (not sure if exitcode handling is necessary here but some evaluators check that and it will be required in minishell)
 
 #### Things you should also test
-- **protection** - functions like `ft_split`, `ft_strdup`, `execve`, and `dup2` should be protected, and after some of them, you need to exit the program properly
+- **protection** - functions like `fork`, `pipe`, `ft_split`, `ft_strdup`, `execve`, and `dup2` should be protected, and after some of them, you need to exit the program properly
 - **random file** - `./pipex /dev/random cat "head -1" outfile`
 - **norminette**
 - **valgrind** - make sure to use flags too especially `--track-fds=all --trace-children=yes`, at the end of the execution, only three std fds are allowed to be open (be aware that in VS Code, there are by default some extra fds open therefore it's better to test this in a shell outside of VS Code)
