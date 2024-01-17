@@ -8,11 +8,14 @@ This project is about **pipes**.
 Following information and the code in this repository is made for inspiration and help for students working on this project. 
 
 *If you copy any part of the code, you only cheat yourself because you will learn nothing. Get just inspired instead.*
-![Pipe](https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fclipart-library.com%2Fimage_gallery%2F266597.png&f=1&nofb=1&ipt=4aa21f4b81e90ebae456d605913ea37b1f998f2294fd89f4c2b3447b89116176&ipo=images)
+
+<div style="text-align:center;">
+<img src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fclipart-library.com%2Fimage_gallery%2F266597.png&f=1&nofb=1&ipt=4aa21f4b81e90ebae456d605913ea37b1f998f2294fd89f4c2b3447b89116176&ipo=images" alt="drawing" width="150" alt="Pipe"/>
+</div>
 
 ## Requirements
 |||
-|----------|----------|
+|-------------|-------------------|
 |Program name | pipex, pipex_bonus|
 | Turn in files | Makefile, *.h, *.c |
 |Makefile | NAME, all, clean, fclean, re |
@@ -28,7 +31,6 @@ The project must comply with the following rules:
 
 ## Mandatory part
 
-Create a program by `make` in the `build` folder.
 The program execution is as follows:
 
 `$> ./pipex file1 cmd1 cmd2 file2`
@@ -41,10 +43,10 @@ It behaves the same as the shell command below:
 
 - `$> < file1 cmd1 | cmd2 > file2`
 
+(In my implementation you can create the program by executing `make` in the `build` folder.)
 
 ## Bonus part
 
-Create a program by `make bonus` in the `build` folder.
 ### Handle multiple pipes
 The program execution is as follows:
 
@@ -58,6 +60,7 @@ It takes at least four arguments:
 - `file1` and `file2` input and output file names
 - `cmd1` to `cmdn` are shell commands with their parameters
 
+(In my implementation you can create the program by executing `make bonus` in the `build` folder.)
 
 ### Support « and » when the first parameter is "here_doc"
 The program execution is as follows:
@@ -76,7 +79,7 @@ It takes at least four arguments:
 - `file` output file
 
 ## Testing, evaluating
-I submitted the project four times and failed in some of these things
+I submitted the project ~~three~~ **several** times and failed in some of these things:
 #### Mandatory
 - **empty path** - `unset PATH` - code can't segfault after unsetting path
 - **NULL parameters** - `./pipex in cat "" out` - should be handled correctly
