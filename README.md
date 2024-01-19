@@ -1,7 +1,7 @@
 
 # Pipex
 
-A project from 42 Vienna focused on processes, pipe and file management.
+A project from [42 Vienna](https://www.42vienna.com/) focused on processes, pipe and file management.
 
 This project is about **pipes**.
 
@@ -13,7 +13,8 @@ Following information and the code in this repository is made for inspiration an
 <img src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fclipart-library.com%2Fimage_gallery%2F266597.png&f=1&nofb=1&ipt=4aa21f4b81e90ebae456d605913ea37b1f998f2294fd89f4c2b3447b89116176&ipo=images" alt="drawing" width="150" alt="Pipe"/>
 </div>
 
-# Requirements (as of Jan '24)
+# Requirements 
+as of Jan '24
 
 |||
 |-------------|-------------------|
@@ -109,16 +110,16 @@ I submitted the project ~~three~~ **several** times and failed in some of these 
 ### Things you should also test
 - **protection** - functions like `fork`, `pipe`, `ft_split`, `ft_strdup`, `execve`, and `dup2` should be protected, and after some of them, you need to exit the program properly
 - **random file** - `./pipex /dev/random cat "head -1" outfile`
-- **norminette**
-- **valgrind** - make sure to use flags too especially `--track-fds=all --trace-children=yes`, at the end of the execution, only three std fds are allowed to be open (be aware that in VS Code, there are by default some extra fds open therefore it's better to test this in a shell outside of VS Code)
-- **scan-build-12 make re**
-- possibly **funcheck**
-- **pipex-tester**
+- **[norminette](https://github.com/42School/norminette)**
+- **[valgrind](https://valgrind.org/)** - make sure to use flags too especially `--track-fds=all --trace-children=yes`, at the end of the execution, only three std fds are allowed to be open (be aware that in VS Code, there are by default some extra fds open therefore it's better to test this in a shell outside of VS Code)
+- **[scan-build](https://clang-analyzer.llvm.org/scan-build.html)-12 make re**
+- possibly **[funcheck](https://github.com/tmatis/funcheck)**
+- **[pipex-tester](https://github.com/vfurmane/pipex-tester)**
 
 
 # © Copyright
-All of the code belongs to me (@jkczech).
+All of the code belongs to me ([@jkczech](https://github.com/jkczech)).
 
-The project idea and the requirements belong to 42 Vienna / 42 Network.
+The project idea and the requirements belong to [42 Vienna](https://www.42vienna.com/) / [42 Network](https://www.42network.org/).
 
 If sharing this repository is against the rules of the 42 Network, please let me know, and I will take it down.
