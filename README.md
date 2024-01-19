@@ -91,7 +91,7 @@ Some of the key aspects of my code that you can consider doing. But of course, r
 - for **each command** create **one child process**... having parent process that executes one command and child process that executes the other one is imo not recommended, since afterwards it makes it more complicated in case you want to do the bonus or implement your code in minishell project (but it is still possible to do it that way)
 - for each function, try to have **one functionality**, what helps me is **documentation** of my code, meaning that above each function I put one or two line comment saying what the function does... it helps both to keep your code readable and have one functionality for function while not having too complex code
 
-## Testing, evaluating
+## Testing, submitting, evaluating
 I submitted the project ~~three~~ **several** times and failed in some of these things:
 ### Mandatory
 - **empty path** - `unset PATH` - code can't segfault after unsetting path
