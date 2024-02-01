@@ -118,6 +118,7 @@ I submitted the project ~~three~~ **several** times and failed in some of these 
 - possibly **[funcheck](https://github.com/tmatis/funcheck)**
 - **[pipex-tester](https://github.com/vfurmane/pipex-tester)**
 
+If you found these tips and tricks helpful, please put a star ⭐ on my repository, thx :)
 
 # © Copyright
 All of the code belongs to me ([@jkczech](https://github.com/jkczech)).
