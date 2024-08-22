@@ -21,9 +21,9 @@ BSRCS = ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c \
         ft_lstadd_back.c ft_lstdelone.c ft_lstclear.c ft_lstiter.c \
         ft_lstmap.c
 
-OBJ_DIR = ../object
-OBJS = $(addprefix ../object/, $(SRCS:.c=.o))
-BOBJS = $(addprefix ../object/, $(SRCS:.c=.o))
+OBJ_DIR = object
+OBJS = $(addprefix object/, $(SRCS:.c=.o))
+BOBJS = $(addprefix object/, $(SRCS:.c=.o))
 
 #.SILENT:
 
@@ -36,7 +36,7 @@ $(NAME): $(OBJS)
 bonus: $(OBJS) $(BOBJS)
 	$(AR) $(NAME) $(OBJS) $(BOBJS)
 
-../object/%.o: ../source/%.c 
+object/%.o: source/%.c 
 	mkdir -p $(dir $@)
 	$(CC) -c $(CFLAGS) $< -o $@
 

@@ -6,7 +6,7 @@
 #    By: jkoupy <jkoupy@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/11 12:07:05 by jkoupy            #+#    #+#              #
-#    Updated: 2024/08/22 10:53:00 by jkoupy           ###   ########.fr        #
+#    Updated: 2024/08/22 11:41:19 by jkoupy           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,8 +28,8 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror -g
 RM = rm -rf
 
-LIBFT = 	library/libft/build/libft.a
-GETNEXTLINE = 	library/get_next_line/build/getnextline.a
+LIBFT = 	library/libft/libft.a
+GETNEXTLINE = 	library/get_next_line/getnextline.a
 
 MSRCS = main.c free.c parse.c child.c error.c pipex.c here_doc.c
 BSRCS = main_bonus.c free.c parse.c child.c error.c pipex.c here_doc.c
@@ -58,21 +58,21 @@ $(BNAME): $(LIBFT) $(BOBJS)
 
 $(LIBFT):
 	@printf "$(ORANGE)🔁 ./$(NAME) \t compiling$(END)"
-	@make bonus -sC library/libft/build
+	@make bonus -sC library/libft
 
 $(GETNEXTLINE):
 	@printf "$(ORANGE).$(END)"
-	@make -sC library/get_next_line/build
+	@make -sC library/get_next_line
 
 clean:
 	@$(RM) $(OBJ_DIR)
-	@make clean -sC library/libft/build
-	@make clean -sC library/get_next_line/build
+	@make clean -sC library/libft
+	@make clean -sC library/get_next_line
 	@printf "$(RED)💥 object files\t removed\n$(END)"
 
 fclean: clean
-	@make fclean -sC library/libft/build
-	@make fclean -sC library/get_next_line/build
+	@make fclean -sC library/libft
+	@make fclean -sC library/get_next_line
 	@$(RM) $(NAME) $(BNAME)
 	@printf "$(RED)💥 ./$(NAME) \t removed\n$(END)"
 
