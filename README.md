@@ -89,13 +89,13 @@ Before starting with the actual coding, I would recommend watching [this](https:
 Some of the key aspects of my code that you can consider doing. But of course, remember, there are many ways to implement the code to reach the same result.
 
 - having all data in **one structure** (in my case `t_pipex`), it helps saving arguments in the function prototypes, and since there are many things to 'remember' it's a very useful thing
-- for **each command** create **one child process**... having parent process that executes one command and child process that executes the other one is imo not recommended, since afterwards it makes it more complicated in case you want to do the bonus or implement your code in minishell project (but it is still possible to do it that way)
-- for each function, try to have **one functionality**, what helps me is **documentation** of my code, meaning that above each function I put one or two line comment saying what the function does... it helps both to keep your code readable and have one functionality for function while not having too complex code
+- for **each command** create **one child process**... I would not recomend having parent process that executes one command and child process that executes the other one since afterwards its nearly impossible to implement the bonus this way or use your pipex code in minishell project (but it is certainly still possible to do it that way)
+- for each function, try to have **one functionality**. What also helps is **documentation** of code, which means that above each function I put one or two lines of comment saying what the function does... it helps both to keep your code readable and have one functionality for function. Also when you later hover over the function name in VS Code, you can see your comments and know right away what the function does.
 
 ## Testing, submitting, evaluating
 ![image](https://github.com/jkczech/pipex/assets/135329183/0a11d66f-a884-455a-b17b-e15f3a97a8b1)
 
-I submitted the project ~~three~~ **several** times and failed in some of these things:
+I submitted the project many times until I finally finished (: these are the things that should be implemented for the evaluation:
 ### Mandatory
 - **empty path** - `unset PATH` - code can't segfault after unsetting path
 - **NULL parameters** - `./pipex in cat "" out` - should be handled correctly
