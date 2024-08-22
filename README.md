@@ -45,7 +45,7 @@ It behaves the same as the shell command below:
 
 - `$> < file1 cmd1 | cmd2 > file2`
 
-(In my implementation you can create the program by executing `make` in the `build` folder.)
+(In my implementation you can create the program by executing `make`)
 
 ## Bonus part
 
@@ -62,7 +62,7 @@ It takes at least four arguments:
 - `file1` and `file2` input and output file names
 - `cmd1` to `cmdn` are shell commands with their parameters
 
-(In my implementation you can create the program by executing `make bonus` in the `build` folder.)
+(In my implementation you can create the program by executing `make bonus`)
 
 ### Support « and » when the first parameter is "here_doc"
 The program execution is as follows:
@@ -118,7 +118,7 @@ I submitted the project ~~three~~ **several** times and failed in some of these 
 - possibly **[funcheck](https://github.com/tmatis/funcheck)**
 - **[pipex-tester](https://github.com/vfurmane/pipex-tester)**
 
-If you found these tips and tricks helpful, please put a star ⭐ on my repository, thx :)
+If you found these tips and tricks helpful, please put a star ⭐ on my repository, thanks :)
 
 # © Copyright
 All of the code belongs to me ([@jkczech](https://github.com/jkczech)).
